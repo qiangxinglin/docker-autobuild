@@ -20,8 +20,8 @@ env:
   REGISTRY: ghcr.io
   NAME: wordpress_extended
   IMAGE_NAME: justin-himself/wordpress_extended
-  ARCH: linux/386, linux/amd64, linux/arm/v5, linux/arm/v7, linux/arm64/v8, linux/mips64le, linux/ppc64le, linux/s390x
-
+  #ARCH: linux/386, linux/amd64, linux/arm/v5, linux/arm/v7, linux/arm64/v8, linux/mips64le, linux/ppc64le, linux/s390x
+  ARCH: linux/amd64, linux/arm/v5, linux/arm/v7, linux/arm64/v8
 
 jobs:
   build:
