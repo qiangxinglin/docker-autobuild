@@ -20,6 +20,7 @@ env:
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: wordpress_extended
+  REPO_PATH: ${{ env.GITHUB_REPOSITORY }}
 
 
 jobs:
@@ -42,7 +43,7 @@ jobs:
       
       - name: Clone repository
         run: | 
-          git clone https://github.com/${{ env.GITHUB_REPOSITORY }}.git .
+          git clone https://github.com/$REPO_PATH.git .
 
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
