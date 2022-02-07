@@ -26,6 +26,10 @@ docker run \
 -e WORDPRESS_DB_NAME=EXAMPLE_NAME \
 -e WORDPRESS_TABLE_PREFIX=EXAMPLE_PREFIX_ \
 -e WORDPRESS_DEBUG=0 \
+-e PHP_UPLOAD_MAX_FILESIZE=200M \
+-e PHP_POST_MAX_SIZE=200M \
+-e PHP_MAX_EXECUTION_TIME=300 \
+-e PHP_MEMORY_LIMIT=4096M \
 -v EXAMPLE_PATH/wordpress:/var/www/html \
 -d ghcr.io/justin-himself/wordpress_extended:master
 ```
