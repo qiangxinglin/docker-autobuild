@@ -10,9 +10,10 @@ RUN touch /usr/local/etc/php/conf.d/upload.ini \
          && echo 'upload_max_filesize = ${PHP_UPLOAD_MAX_FILESIZE}' >> /usr/local/etc/php/conf.d/upload.ini \
          && echo 'post_max_size = ${PHP_POST_MAX_SIZE}' >> /usr/local/etc/php/conf.d/upload.ini \
          && echo 'max_execution_time = ${PHP_MAX_EXECUTION_TIME}' >> /usr/local/etc/php/conf.d/upload.ini \
-         && echo 'memory_limit = ${PHP_MEMORY_LIMIT}' >> /usr/local/etc/php/conf.d/upload.ini
-RUN apt-get update
-RUN apt-get install -y zlib1g-dev libmemcached-dev && \
+         && echo 'memory_limit = ${PHP_MEMORY_LIMIT}' >> /usr/local/etc/php/conf.d/upload.ini \
+         && sed -i '1i\<?php ini_set("memory_limit","-1");?>' /usr/local/lib/php/PEAR/Installer.php
+RUN apt-get update && \
+    apt-get install -y zlib1g-dev libmemcached-dev && \
     pecl install memcached && \
     pecl install -o -f redis && \
     docker-php-ext-enable memcached && \
