@@ -19,7 +19,7 @@ env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: ${{ env.GITHUB_EVENT_PATH }%%.*}
 
 
 jobs:
@@ -36,6 +36,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        
+      - name: Clone repository
+        run: | 
+          git clone https://github.com/${{ env.GITHUB_REPOSITORY }}.git .
 
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
@@ -74,7 +78,7 @@ jobs:
         id: build-and-push
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
-          context: .
+          context: ${{ IMAGE_NAME }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
