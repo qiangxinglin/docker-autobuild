@@ -20,7 +20,7 @@ env:
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: wordpress_extended
-  REPO_PATH: ${{ env.GITHUB_REPOSITORY }}
+  REPO_PATH: ${{ GITHUB_REPOSITORY }}
 
 
 jobs:
@@ -37,9 +37,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-        
-      - name: SSH connection to Actions
-        uses: P3TERX/ssh2actions@v1.0.0
       
       - name: Clone repository
         run: | 
