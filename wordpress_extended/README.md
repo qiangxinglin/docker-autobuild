@@ -18,7 +18,7 @@ Build on official wordpress:latest image, added new features.
 ### Usage
 
 ```bash
-ghcr.io/justin-himself/wordpress_extended:master
+docker pull ghcr.io/justin-himself/wordpress_extended:master
 ```
 
 ```bash
