@@ -3,6 +3,14 @@
 ![](https://img.shields.io/badge/ARCH-amd64-red)
 ![](https://img.shields.io/badge/ARCH-arm64-ff69b4)
 
+### Description
+
+Build on official wordpress:latest image, added new features.
+  - Memcached Support
+  - Redis Support
+  - Enables adjusting Timezone
+  - Enables adjusting php settings
+
 ### Usage
 
 ```bash
