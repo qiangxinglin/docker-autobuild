@@ -1,4 +1,6 @@
 FROM wordpress:latest
+ENV TZ=Europe/London
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN touch /usr/local/etc/php/conf.d/upload.ini \
          && echo 'file_uploads = On' >> /usr/local/etc/php/conf.d/upload.ini \
          && echo 'upload_max_filesize = 200M' >> /usr/local/etc/php/conf.d/upload.ini \
