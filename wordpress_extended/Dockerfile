@@ -13,10 +13,10 @@ RUN touch /usr/local/etc/php/conf.d/upload.ini \
          && echo 'memory_limit = ${PHP_MEMORY_LIMIT}' >> /usr/local/etc/php/conf.d/upload.ini \
          && sed -i '1i\<?php ini_set("memory_limit","-1");?>' /usr/local/lib/php/PEAR/Installer.php
 RUN apt-get update && \
-    apt-get install -y zlib1g-dev libmemcached-dev && \
-    pecl install memcached && \
-    pecl install -o -f redis && \
-    docker-php-ext-enable memcached && \
+    apt-get install -y zlib1g-dev libmemcached-dev
+RUN pecl install memcached
+RUN pecl install -o -f redis
+RUN docker-php-ext-enable memcached && \
     docker-php-ext-enable redis
 RUN rm -rf /tmp/pear && \
          apt-get clean
