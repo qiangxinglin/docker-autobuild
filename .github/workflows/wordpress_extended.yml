@@ -36,10 +36,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      
-      - name: Clone repository
-        run: | 
-          git clone https://github.com/$GITHUB_REPOSITORY.git .
 
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
