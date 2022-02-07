@@ -18,6 +18,10 @@ Build on official wordpress:latest image, added new features.
 ### Usage
 
 ```bash
+ghcr.io/justin-himself/wordpress_extended:master
+```
+
+```bash
 docker run \
 --name wordpress \
 --net=wordpress `#optional`\
