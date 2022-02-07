@@ -20,7 +20,7 @@ env:
   REGISTRY: ghcr.io
   NAME: wordpress_extended
   # github.repository as <account>/<repo>
-  IMAGE_NAME: justin-himself/${{ env.NAME }}
+  IMAGE_NAME: justin-himself/wordpress_extended
 
 
 jobs:
