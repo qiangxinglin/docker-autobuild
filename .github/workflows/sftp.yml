@@ -15,7 +15,7 @@ env:
   REGISTRY: ghcr.io
   NAME: sftp
   IMAGE_NAME: justin-himself/sftp
-  ARCH: linux/amd64,  linux/arm64/v8, linux/mips64le, linux/ppc64le, linux/s390x
+  ARCH: linux/386, linux/amd64,  linux/arm/v5,linux/arm/v7, linux/mips64le, linux/ppc64le, linux/s390x
 
 jobs:
   build_debian:
