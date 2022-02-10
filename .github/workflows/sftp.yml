@@ -58,7 +58,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=raw. value=latest
+            type=raw, value=latest
             type=raw, value=debian
           
       - name: Build and push
