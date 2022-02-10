@@ -15,6 +15,10 @@ jobs:
     - name: Update submodules
       run: |
         git submodule update --remote --merge
+    - name: update placeholder
+      run: |
+        rm .placeholder
+        uuidgen > .placeholder
     - name: Commit files
       run: |
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
