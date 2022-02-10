@@ -128,6 +128,7 @@ jobs:
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: ${{ env.NAME }}
+          file: ${{ env.NAME }}/Dockerfile-alpine
           push: ${{ github.event_name != 'pull_request' }}
           platforms: ${{ env.ARCH }}
           tags: ${{ steps.meta.outputs.tags }}
