@@ -18,7 +18,7 @@ Build on official wordpress:latest image, added new features.
 ### Usage
 
 ```bash
-docker pull ghcr.io/justin-himself/wordpress_extended:master
+docker pull ghcr.io/justin-himself/wordpress_extended:latest
 ```
 
 ```bash
@@ -38,7 +38,7 @@ docker run \
 -e PHP_MAX_EXECUTION_TIME=300 `#optional`\
 -e PHP_MEMORY_LIMIT=4096M `#optional`\
 -v EXAMPLE_PATH/wordpress:/var/www/html \
--d ghcr.io/justin-himself/wordpress_extended:master
+-d ghcr.io/justin-himself/wordpress_extended:latest
 ```
 
 
