@@ -20,7 +20,7 @@ env:
   REGISTRY: ghcr.io
   NAME: sspanel-uim
   IMAGE_NAME: justin-himself/sspanel-uim
-  ARCH: linux/amd64, linux/arm/v6, linux/arm/v7, linux/arm64/v8, linux/s390x
+  ARCH: linux/amd64
 
 jobs:
   build:
@@ -36,6 +36,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
         
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
