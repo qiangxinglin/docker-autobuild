@@ -1,3 +1,6 @@
 [submodule "sftp"]
 	path = sftp
 	url = git@github.com:atmoz/sftp.git
+[submodule "sspanel-uim/SSPanel-Uim"]
+	path = sspanel-uim/SSPanel-Uim
+	url = https://github.com/Anankke/SSPanel-Uim
