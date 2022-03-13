@@ -94,6 +94,13 @@ chmod -R 777 storage
 
 echo >&2 "Done"
 
+echo -n >&2 "\nUpdating ip database..."
+
+php xcat Tool initQQwry
+
+echo >&2 "Done"
+
+
 echo >&2  "\nAll set, please enjoy!\n\n"
 
 exec "apache2-foreground"
