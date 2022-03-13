@@ -13,6 +13,7 @@ $_ENV['version'] = 2;    //仅当涉及【需要修改config以外的文件】�
 
 // a helper function to lookup "env_FILE", "env", then fallback
 if (!function_exists('getenv_docker')) {
+	// https://github.com/docker-library/wordpress/issues/588 (WP-CLI will load this file 2x)
 	function getenv_docker($env, $default) {
 		if ($fileEnv = getenv($env . '_FILE')) {
 			return rtrim(file_get_contents($fileEnv), "\r\n");
@@ -28,23 +29,23 @@ if (!function_exists('getenv_docker')) {
 
 
 //基本设置--------------------------------------------------------------------------------------------
-$_ENV['key']        = getenv_docker('SSPANEL_KEY','example key');                //!!! 瞎 jb 修改此key为随机字符串确保网站安全 !!!
-$_ENV['debug']      = getenv_docker('SSPANEL_DEBUG', false);                          //正式环境请确保为 false
-$_ENV['appName']    = getenv_docker('SSPANEL_APPNAME', 'SSPanel-UIM');                      //站点名称
-$_ENV['baseUrl']    = getenv_docker('SSPANEL_BASEURL', 'https://sspanel.host');               //站点地址
-$_ENV['muKey']      = getenv_docker('SSPANEL_MUKEY', 'example mukey');                       //用于校验魔改后端请求，可以随意修改，但请保持前后端一致，否则节点不能工作！
+$_ENV['key']        = getenv_docker('SSPANEL_KEY','SUHE2noSSQfzgga9riuq');                //!!! 瞎 jb 修改此key为随机字符串确保网站安全 !!!
+$_ENV['debug']      = getenv_docker('SSPANEL_DEBUG',0);                          //正式环境请确保为 false
+$_ENV['appName']    = getenv_docker('SSPANEL_APPNAME','SSPanel-UIM');                      //站点名称
+$_ENV['baseUrl']    = getenv_docker('SSPANEL_BASEURL','https://www.example.com');               //站点地址
+$_ENV['muKey']      = getenv_docker('SSPANEL_MUKEY','kz7RwaP9ztJpauugrzQ5');                       //用于校验魔改后端请求，可以随意修改，但请保持前后端一致，否则节点不能工作！
 
 
 //数据库设置--------------------------------------------------------------------------------------------
 // db_host|db_socket 二选一，若设置 db_socket 则 db_host 会被忽略，不用请留空。若数据库在本机上推荐用 db_socket。
 // db_host 例: localhost（可解析的主机名）, 127.0.0.1（IP 地址）, 10.0.0.2:4406（含端口)
 // db_socket 例：/var/run/mysqld/mysqld.sock（需使用绝对地址）
-$_ENV['db_driver']    = getenv_docker('DB_DRIVER', 'mysql');
-$_ENV['db_host']      = getenv_docker('DB_HOST', '') . getenv_docker('DB_PORT', 3306);
-$_ENV['db_socket']    = getenv_docker('DB_SOCKET', '');
-$_ENV['db_database']  = getenv_docker('DB_DATABASE', 'sspanel');           //数据库名
-$_ENV['db_username']  = getenv_docker('DB_USERNAME', 'root');              //数据库用户名
-$_ENV['db_password']  = getenv_docker('DB_PASSWORD', 'sspanel');           //用户名对应的密码
+$_ENV['db_driver']    = 'mysql';
+$_ENV['db_host']      = getenv_docker('DB_HOST',"sspaneldb") . ':' . getenv('DB_PORT',3306);
+$_ENV['db_socket']    = getenv_docker('DB_SOCKET','');
+$_ENV['db_database']  = getenv_docker('DB_DATABASE','sspanel');           //数据库名
+$_ENV['db_username']  = getenv_docker('DB_USERNAME','root');              //数据库用户名
+$_ENV['db_password']  = getenv_docker('DB_PASSWORD','');           //用户名对应的密码
 #高级
 $_ENV['db_charset']   = 'utf8mb4';
 $_ENV['db_collation'] = 'utf8mb4_unicode_ci';

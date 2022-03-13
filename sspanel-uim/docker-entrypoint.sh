@@ -1,8 +1,10 @@
-echo >&2 " __ __   ___                 _ "
-echo >&2 "/ _\ _\ / _ \__ _ _ __   ___| |"
-echo >&2 "\ \\\ \ / /_)/ _\` | '_ \ / _ \ |"
-echo >&2 "_\ \\\ \ ___/ (_| | | | |  __/ |"
-echo >&2 "\__\__\/    \__,_|_| |_|\___|_|"
+
+                                 
+echo >&2 " _____ _____ _____             _ "
+echo >&2 "|   __|   __|  _  |___ ___ ___| |"
+echo >&2 "|__   |__   |   __| .'|   | -_| |"
+echo >&2 "|_____|_____|__|  |__,|_|_|___|_|"
+                                 
                    
 echo -n >&2 "\nChecking environment..."
 
@@ -86,6 +88,6 @@ else
     fi
 fi
 
-echo >&2  "\nAll set, please enjoy!"
+echo >&2  "\nAll set, please enjoy!\n\n"
 
 exec "apache2-foreground"
