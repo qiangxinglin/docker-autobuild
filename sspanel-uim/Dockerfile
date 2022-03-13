@@ -21,6 +21,7 @@ RUN apt-get update \
 RUN cp config/appprofile.example.php config/appprofile.php && \
     chmod -R 755 /usr/src/sspanel/storage && \
     chmod -R 777 /usr/src/sspanel/storage/framework/smarty/compile/ && \
+    chmod +x /usr/local/bin/docker-entrypoint.sh && \
     curl -SL https://getcomposer.org/installer -o composer-setup.php && \
     php composer-setup.php && \
     php composer.phar install && \
@@ -39,4 +40,4 @@ RUN cp config/appprofile.example.php config/appprofile.php && \
     } | tee /etc/supervisor/crond.conf
 
 WORKDIR /var/www/html
-ENTRYPOINT docker-entrypoint.sh
+ENTRYPOINT "docker-entrypoint.sh"
