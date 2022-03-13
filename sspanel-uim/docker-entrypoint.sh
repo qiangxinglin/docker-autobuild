@@ -41,7 +41,7 @@ if [ ! -e public/index.php ]; then
             exit 
 	fi
 
-    cp -r /usr/src/sspanel/* .
+    cp -r /usr/src/sspanel/. .
 
     echo >&2 "Done"
 else
@@ -87,6 +87,12 @@ else
         echo >&2 "Found"
     fi
 fi
+
+echo -n >&2 "\nApplying special permissions..."
+
+chmod -R 777 storage
+
+echo >&2 "Done"
 
 echo >&2  "\nAll set, please enjoy!\n\n"
 

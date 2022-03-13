@@ -2,6 +2,7 @@ FROM php:7.2-apache
 
 COPY SSPanel-Uim/. /usr/src/sspanel/
 COPY 000-default.conf /etc/apache2/sites-enabled
+COPY ./".htaccess" /usr/src/sspanel/
 COPY .config.php /usr/src/sspanel/config
 COPY docker-entrypoint.sh /usr/local/bin/
 ENV DB_DATABASE=sspanel
@@ -20,7 +21,8 @@ RUN apt-get update \
     &&     a2enmod rewrite
 
 RUN cp config/appprofile.example.php config/appprofile.php && \
-    chmod -R 777 /usr/src/sspanel/storage && \
+    chmod -R 755 storage && \
+    chmod -R 777  /usr/src/sspanel/storage/framework/smarty/compile/ && \
     chmod +x /usr/local/bin/docker-entrypoint.sh && \
     curl -SL https://getcomposer.org/installer -o composer-setup.php && \
     php composer-setup.php && \
