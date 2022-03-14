@@ -28,6 +28,14 @@ if [ -z $DB_PASSWORD ];then
     echo >&2 "DB_PASSWORD not set!"
     exit
 fi
+if [ -z $SSPANEL_ADMIN_EMAIL ];then
+    echo >&2 "SSPANEL_ADMIN_EMAIL not set!"
+    exit
+fi
+if [ -z $SSPANEL_ADMIN_PASSWORD ];then
+    echo >&2 "SSPANEL_ADMIN_PASSWORD not set!"
+    exit
+fi
 
 echo  >&2 "Pass"
 echo -n >&2 "\nChecking if installation exists..."
@@ -51,7 +59,7 @@ fi
 echo -n >&2 "\nChecking connection to database..."
 
 if [ -z $DB_HOST ]; then
-    if ! mysql -S $DB_SOCKET -P $DB_PORT -u $DB_USERNAME --password=$DB_PASSWORD -e "SELECT VERSION() > /dev/null"; then
+    if ! mysql -S $DB_SOCKET -P $DB_PORT -u $DB_USERNAME --password=$DB_PASSWORD -e "SELECT VERSION()" > /dev/null; then
         echo >&2 "Cannot connect to database!"
     fi
 else
@@ -66,33 +74,61 @@ echo -n >&2 "\nChecking if database exists..."
 
 if [ -z $DB_HOST ]; then
     if ! mysql -S $DB_SOCKET -P $DB_PORT -u $DB_USERNAME --password=$DB_PASSWORD -e "USE "$DB_DATABASE > /dev/null; then
-        echo >&2 "Not found"
         echo -n >&2 "\nInitialize database..."
 
         mysql -S $DB_SOCKET -P $DB_PORT -u $DB_USERNAME --password=$DB_PASSWORD -e "CREATE DATABASE "$DB_DATABASE" CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
         mysql -S $DB_SOCKET -P $DB_PORT -u $DB_USERNAME --password=$DB_PASSWORD $DB_DATABASE < sql/glzjin_all.sql
 
+	echo >&2 "Done"
     else
         echo >&2 "Found"
     fi
 else
     if ! mysql -h $DB_HOST -P $DB_PORT -u $DB_USERNAME --password=$DB_PASSWORD -e "USE "$DB_DATABASE > /dev/null; then
-        echo >&2 "Not found"
         echo -n >&2 "\nInitialize database..."
 
         mysql -h $DB_HOST -P $DB_PORT -u $DB_USERNAME --password=$DB_PASSWORD -e "CREATE DATABASE "$DB_DATABASE" CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
         mysql -h $DB_HOST -P $DB_PORT -u $DB_USERNAME --password=$DB_PASSWORD $DB_DATABASE < sql/glzjin_all.sql
-
+	
+	echo >&2 "Done"
     else
         echo >&2 "Found"
     fi
 fi
 
-echo -n >&2 "\nApplying special permissions..."
+echo -n >&2 "\nApplying permissions..."
 
 chmod -R 777 storage
 
 echo >&2 "Done"
+
+echo -n >&2 "\nChecking if admin account exists..."
+
+if [ -z $DB_HOST ]; then
+	temp_sql_result=$(mysql -S $DB_SOCKET -P $DB_PORT -u $DB_USERNAME --password=$DB_PASSWORD -e "SELECT user_name FROM sspanel.user WHERE user_name = 'admin';")
+else
+	temp_sql_result=$(mysql -h $DB_HOST -P $DB_PORT -u $DB_USERNAME --password=$DB_PASSWORD -e "SELECT user_name FROM sspanel.user WHERE user_name = 'admin';")
+fi
+
+if [ -z $temp_sql_result ]; then
+	echo >&2 "Not found"
+	echo -n >&2 "\nCreating admin account..."
+	printf $SSPANEL_ADMIN_EMAIL'\n'$SSPANEL_ADMIN_PASSWORD'\ny\n' | php xcat User createAdmin
+	echo >&2 "Done"
+fi
+
+echo -n >&2 "\nChecking if client binaries exist..."
+
+if [ ! -d "public/clients" ]; then
+	echo >&2 "Not found"
+	echo -n >&2 "\nDownloading client binaries..."
+	echo -n >&2 "\nThis should take about 5 min, depend on your internet connection."
+	echo -n >&2 "\nTo skip this check, make sure public/clients/ folder exists."
+	php xcat ClientDownload
+	echo >&2 "\n Done"
+else
+	echo >&2 "Found"
+fi
 
 echo -n >&2 "\nUpdating ip database..."
 
