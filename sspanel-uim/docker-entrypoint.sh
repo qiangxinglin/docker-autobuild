@@ -8,23 +8,23 @@ echo >&2 "|_____|_____|__|  |__,|_|_|___|_|"
                    
 echo -n >&2 "\nChecking environment..."
 
-if [ -z $SSPANEL_KEY ]; then
+if [ -z "$SSPANEL_KEY" ]; then
     echo >&2 "SSPANEL_KEY not set!"
     exit
 fi
-if [ -z $SSPANEL_BASEURL ];then
+if [ -z "$SSPANEL_BASEURL" ];then
     echo >&2 "SSPANEL_BASEURL not set!"
     exit
 fi
-if [ -z $SSPANEL_MUKEY ];then
+if [ -z "$SSPANEL_MUKEY" ];then
     echo >&2 "SSPANEL_MUKEY not set!"
     exit
 fi
-if [ -z $DB_HOST ] && [ -z $DB_SOCKET ];then
+if [ -z "$DB_HOST" ] && [ -z "$DB_SOCKET" ];then
     echo >&2 "DB_HOST or DB_SOCKET not set!"
     exit
 fi
-if [ -z $DB_PASSWORD ];then
+if [ -z "$DB_PASSWORD" ];then
     echo >&2 "DB_PASSWORD not set!"
     exit
 fi
@@ -50,7 +50,7 @@ fi
 
 echo -n >&2 "\nChecking connection to database..."
 
-if [ -z $DB_HOST ]; then
+if [ -z "$DB_HOST" ]; then
     if ! mysql -S $DB_SOCKET -P $DB_PORT -u $DB_USERNAME --password=$DB_PASSWORD -e "SELECT VERSION()" > /dev/null; then
         echo >&2 "Cannot connect to database!"
     fi
@@ -64,11 +64,11 @@ fi
 echo >&2 "Good"
 echo -n >&2 "\nChecking if database exists..."
 
-if [ -z $DB_HOST ]; then
-    if ! mysql -S $DB_SOCKET -P $DB_PORT -u $DB_USERNAME --password=$DB_PASSWORD -e "USE "$DB_DATABASE > /dev/null; then
+if [ -z "$DB_HOST" ]; then
+    if ! mysql -S $DB_SOCKET -P $DB_PORT -u $DB_USERNAME --password=$DB_PASSWORD -e "USE $DB_DATABASE" > /dev/null; then
         echo -n >&2 "\nInitialize database..."
 
-        mysql -S $DB_SOCKET -P $DB_PORT -u $DB_USERNAME --password=$DB_PASSWORD -e "CREATE DATABASE "$DB_DATABASE" CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+        mysql -S $DB_SOCKET -P $DB_PORT -u $DB_USERNAME --password=$DB_PASSWORD -e "CREATE DATABASE $DB_DATABASE CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
         mysql -S $DB_SOCKET -P $DB_PORT -u $DB_USERNAME --password=$DB_PASSWORD $DB_DATABASE < sql/glzjin_all.sql
 
 	echo >&2 "Done"
@@ -76,10 +76,10 @@ if [ -z $DB_HOST ]; then
         echo >&2 "Found"
     fi
 else
-    if ! mysql -h $DB_HOST -P $DB_PORT -u $DB_USERNAME --password=$DB_PASSWORD -e "USE "$DB_DATABASE > /dev/null; then
+    if ! mysql -h $DB_HOST -P $DB_PORT -u $DB_USERNAME --password=$DB_PASSWORD -e "USE $DB_DATABASE" > /dev/null; then
         echo -n >&2 "\nInitialize database..."
 
-        mysql -h $DB_HOST -P $DB_PORT -u $DB_USERNAME --password=$DB_PASSWORD -e "CREATE DATABASE "$DB_DATABASE" CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+        mysql -h $DB_HOST -P $DB_PORT -u $DB_USERNAME --password=$DB_PASSWORD -e "CREATE DATABASE $DB_DATABASE CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
         mysql -h $DB_HOST -P $DB_PORT -u $DB_USERNAME --password=$DB_PASSWORD $DB_DATABASE < sql/glzjin_all.sql
 	
 	echo >&2 "Done"
@@ -96,20 +96,20 @@ echo >&2 "Done"
 
 echo -n >&2 "\nChecking if admin account exists..."
 
-if [ -z $DB_HOST ]; then
-	temp_sql_result=$(mysql -S $DB_SOCKET -P $DB_PORT -u $DB_USERNAME --password=$DB_PASSWORD -e "SELECT user_name FROM sspanel.user WHERE user_name = 'admin';")
+if [ -z "$DB_HOST" ]; then
+	temp_sql_result=$(mysql -S $DB_SOCKET -P $DB_PORT -u $DB_USERNAME --password=$DB_PASSWORD -e "SELECT user_name FROM $DB_DATABASE.user WHERE user_name = 'admin';")
 else
-	temp_sql_result=$(mysql -h $DB_HOST -P $DB_PORT -u $DB_USERNAME --password=$DB_PASSWORD -e "SELECT user_name FROM sspanel.user WHERE user_name = 'admin';")
+	temp_sql_result=$(mysql -h $DB_HOST -P $DB_PORT -u $DB_USERNAME --password=$DB_PASSWORD -e "SELECT user_name FROM $DB_DATABASE.user WHERE user_name = 'admin';")
 fi
 
-if [ -z $temp_sql_result ]; then
+if [ -z "$temp_sql_result" ]; then
 	echo >&2 "Not found"
 	echo -n >&2 "\nAttemping to create admin account..."
-	if [ -z $SSPANEL_ADMIN_EMAIL ] || [-z $SSPANEL_ADMIN_PASSWORD ];then
+	if [ -z "$SSPANEL_ADMIN_EMAIL" ] || [ -z "$SSPANEL_ADMIN_PASSWORD" ];then
 		echo >&2 "SSPANEL_ADMIN_EMAIL or SSPANEL_ADMIN_PASSWORD not set!"
 	else
+    echo -n >&2 "\n" 
 		printf $SSPANEL_ADMIN_EMAIL'\n'$SSPANEL_ADMIN_PASSWORD'\ny\n' | php xcat User createAdmin
-		echo >&2 "Done"
 	fi
 fi
 
@@ -117,20 +117,15 @@ echo -n >&2 "\nChecking if client binaries exist..."
 
 if [ ! -d "public/clients" ]; then
 	echo >&2 "Not found"
-	echo -n >&2 "\nDownloading client binaries..."
-	echo -n >&2 "\nThis should take about 5 min, depend on your internet connection."
-	echo -n >&2 "\nTo skip this check, make sure public/clients/ folder exists."
+	echo -n >&2 "\nDownloading client binaries...\n\n"
 	php xcat ClientDownload
-	echo >&2 "\n Done"
 else
 	echo >&2 "Found"
 fi
 
-echo -n >&2 "\nUpdating ip database..."
+echo -n >&2 "\nUpdating ip database...\n\n"
 
 php xcat Tool initQQwry
-
-echo >&2 "Done"
 
 
 echo >&2  "\nAll set, please enjoy!\n\n"
