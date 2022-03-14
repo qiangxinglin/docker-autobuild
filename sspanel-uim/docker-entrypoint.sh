@@ -28,14 +28,6 @@ if [ -z $DB_PASSWORD ];then
     echo >&2 "DB_PASSWORD not set!"
     exit
 fi
-if [ -z $SSPANEL_ADMIN_EMAIL ];then
-    echo >&2 "SSPANEL_ADMIN_EMAIL not set!"
-    exit
-fi
-if [ -z $SSPANEL_ADMIN_PASSWORD ];then
-    echo >&2 "SSPANEL_ADMIN_PASSWORD not set!"
-    exit
-fi
 
 echo  >&2 "Pass"
 echo -n >&2 "\nChecking if installation exists..."
@@ -112,9 +104,13 @@ fi
 
 if [ -z $temp_sql_result ]; then
 	echo >&2 "Not found"
-	echo -n >&2 "\nCreating admin account..."
-	printf $SSPANEL_ADMIN_EMAIL'\n'$SSPANEL_ADMIN_PASSWORD'\ny\n' | php xcat User createAdmin
-	echo >&2 "Done"
+	echo -n >&2 "\nAttemping to create admin account..."
+	if [ -z $SSPANEL_ADMIN_EMAIL ] || [-z $SSPANEL_ADMIN_PASSWORD ];then
+		echo >&2 "SSPANEL_ADMIN_EMAIL or SSPANEL_ADMIN_PASSWORD not set!"
+	else
+		printf $SSPANEL_ADMIN_EMAIL'\n'$SSPANEL_ADMIN_PASSWORD'\ny\n' | php xcat User createAdmin
+		echo >&2 "Done"
+	fi
 fi
 
 echo -n >&2 "\nChecking if client binaries exist..."
