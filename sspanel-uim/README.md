@@ -33,10 +33,6 @@ Todo List:
 ### Usage
 
 
-```bash
-docker pull ghcr.io/justin-himself/sspanel-uim:latest
-```
-
 > 通过 docker-compose 创建容器 (推荐)
 
 ```.env
@@ -64,7 +60,7 @@ version: '3'
 services:
 
     sspanel:
-        image: ghcr.io/justin-himself/sspanel-uim:latest
+        image: justinhimself/sspanel-uim:latest
         container_name: sspanel
         restart: always
         ports:
@@ -152,7 +148,7 @@ docker run \
   -e DB_DATABASE=$DB_DATABASE \
   -e DB_USERNAME=$DB_USERNAME \
   -e DB_PASSWORD=$DB_PASSWORD \
-  -d ghcr.io/justin-himself/sspanel-uim:latest
+  -d justinhimself/sspanel-uim:latest
 ```
 
 ### Parameters
