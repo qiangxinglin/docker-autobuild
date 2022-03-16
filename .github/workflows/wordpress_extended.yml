@@ -20,8 +20,7 @@ env:
   #REGISTRY: ghcr.io
   REGISTRY: docker.io
   NAME: wordpress_extended
-  #ARCH: linux/amd64,  linux/arm64/v8, linux/mips64le, linux/ppc64le, linux/s390x
-  ARCH: linux/amd64
+  ARCH: linux/amd64,  linux/arm64/v8, linux/mips64le, linux/ppc64le, linux/s390x
 
 jobs:
   build:
@@ -96,7 +95,7 @@ jobs:
         uses: christian-korneck/update-container-description-action@v1
         env:
           DOCKER_USER: ${{ secrets.DH_USERNAME }}
-          DOCKER_PASS: ${{ secrets.DH_TOKEN }}
+          DOCKER_PASS: ${{ secrets.DH_PASSWORD }}
         with:
           destination_container_repo: ${{ secrets.DH_USERNAME }}/${{ env.NAME }}
           provider: dockerhub
