@@ -101,7 +101,7 @@ jobs:
         with:
           destination_container_repo: ${{ secrets.DH_USERNAME }}/${{ env.NAME }}
           provider: dockerhub
-          short_description: 'Update readme.'
+          short_description: ${{ env.DESCRIPTION }}
           readme_file: '${{ env.NAME }}/README.md'
 
       # Sign the resulting Docker image digest except on PRs.
