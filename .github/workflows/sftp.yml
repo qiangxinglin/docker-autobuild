@@ -15,6 +15,7 @@ env:
   REGISTRY: docker.io
   NAME: sftp
   ARCH: linux/386, linux/amd64,linux/arm64/v8, linux/arm/v7, linux/ppc64le, linux/s390x
+  DESCRIPTION: 'Multiarch sftp image, based on atomz/sftp.'
 
 jobs:
   build_debian:
