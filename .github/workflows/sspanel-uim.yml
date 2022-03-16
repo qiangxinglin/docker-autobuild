@@ -17,7 +17,7 @@ on:
     #branches: [ master ]
 
 env:
-  REGISTRY: ghcr.io
+  #REGISTRY: ghcr.io
   NAME: sspanel-uim
   IMAGE_NAME: justin-himself/sspanel-uim
   ARCH: linux/amd64, linux/arm64/v8, linux/arm/v7, linux/arm/v6, linux/386, linux/s390x, linux/ppc64le
