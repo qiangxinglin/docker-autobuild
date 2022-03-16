@@ -1,4 +1,4 @@
-name: wordpress_extended
+name: wordpress-extended
 
 # This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by
@@ -19,7 +19,7 @@ on:
 env:
   #REGISTRY: ghcr.io
   REGISTRY: docker.io
-  NAME: wordpress_extended
+  NAME: wordpress-extended
   ARCH: linux/amd64,  linux/arm64/v8, linux/mips64le, linux/ppc64le, linux/s390x
 
 jobs:
