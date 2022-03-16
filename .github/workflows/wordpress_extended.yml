@@ -17,7 +17,7 @@ on:
     #branches: [ master ]
 
 env:
-  REGISTRY: ghcr.io
+  #REGISTRY: ghcr.io
   NAME: wordpress_extended
   IMAGE_NAME: justin-himself/wordpress_extended
   ARCH: linux/amd64,  linux/arm64/v8, linux/mips64le, linux/ppc64le, linux/s390x
@@ -59,9 +59,11 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
         with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          username: ${{ secrets.DH_USERNAME }}
+          password: ${{ secrets.DH_TOKEN }}
+          #username: ${{ github.actor }}
+          #password: ${{ secrets.GITHUB_TOKEN }}
+          #registry: ${{ env.REGISTRY }}
 
       # Extract metadata (tags, labels) for Docker
       # https://github.com/docker/metadata-action
