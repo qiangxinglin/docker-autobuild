@@ -20,7 +20,6 @@ env:
   #REGISTRY: ghcr.io
   REGISTRY: docker.io
   NAME: wordpress_extended
-  IMAGE_NAME: justin-himself/wordpress_extended
   #ARCH: linux/amd64,  linux/arm64/v8, linux/mips64le, linux/ppc64le, linux/s390x
   ARCH: linux/amd64
 
@@ -74,7 +73,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
-          images: ${{ secrets.DH_USERNAME }}/${{ env.IMAGE_NAME }}
+          images: ${{ secrets.DH_USERNAME }}/${{ env.NAME }}
           tags: |
             type=raw, value=latest
 
@@ -99,10 +98,10 @@ jobs:
           DOCKER_USER: ${{ secrets.DH_USERNAME }}
           DOCKER_PASS: ${{ secrets.DH_TOKEN }}
         with:
-          destination_container_repo: ${{ secrets.DH_USERNAME }}/${{ env.IMAGE_NAME }}
+          destination_container_repo: ${{ secrets.DH_USERNAME }}/${{ env.NAME }}
           provider: dockerhub
           short_description: 'Update readme.'
-          readme_file: '${{ env.IMAGE_NAME }}/README.md'
+          readme_file: '${{ env.NAME }}/README.md'
 
       # Sign the resulting Docker image digest except on PRs.
       # This will only write to the public Rekor transparency log when the Docker
@@ -115,4 +114,4 @@ jobs:
           COSIGN_EXPERIMENTAL: "true"
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
-        run: cosign sign ${{ secrets.DH_USERNAME }}/${{ env.IMAGE_NAME }}@${{ steps.build-and-push.outputs.digest }}
+        run: cosign sign ${{ secrets.DH_USERNAME }}/${{ env.NAME }}@${{ steps.build-and-push.outputs.digest }}
