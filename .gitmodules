@@ -4,3 +4,6 @@
 [submodule "sspanel-uim/SSPanel-Uim"]
 	path = sspanel-uim/SSPanel-Uim
 	url = https://github.com/Anankke/SSPanel-Uim
+[submodule "sftp/sftp"]
+	path = sftp/sftp
+	url = https://github.com/atmoz/sftp
