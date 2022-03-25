@@ -7,10 +7,9 @@ ENV GO111MODULE=on \
     TARGET_GOOS=${TARGET_GOOS} \
     TARGET_GOARCH=${TARGET_GOARCH}
 
-WORKDIR /go/src/github.com/cloudflare/cloudflared/
-
 # copy our sources into the builder image
-COPY cloudflared/. .
+COPY cloudflared /go/src/
+WORKDIR /go/src/cloudflared
 
 # compile cloudflared
 RUN make cloudflared
