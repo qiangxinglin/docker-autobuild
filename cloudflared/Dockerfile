@@ -10,7 +10,7 @@ ENV GO111MODULE=on \
 WORKDIR /go/src/github.com/cloudflare/cloudflared/
 
 # copy our sources into the builder image
-COPY . .
+COPY cloudflared/. .
 
 # compile cloudflared
 RUN make cloudflared
