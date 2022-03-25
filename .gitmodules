@@ -7,3 +7,6 @@
 [submodule "sftp/sftp"]
 	path = sftp/sftp
 	url = https://github.com/atmoz/sftp
+[submodule "cloudflared/cloudflared"]
+	path = cloudflared/cloudflared
+	url = git@github.com:cloudflare/cloudflared.git
