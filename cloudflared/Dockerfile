@@ -8,8 +8,8 @@ ENV GO111MODULE=on \
     TARGET_GOARCH=${TARGET_GOARCH}
 
 # copy our sources into the builder image
-COPY cloudflared /go/src/
-WORKDIR /go/src/cloudflared
+COPY cloudflared/. /go/src/
+WORKDIR /go/src/
 
 # compile cloudflared
 RUN make cloudflared
@@ -18,7 +18,7 @@ RUN make cloudflared
 FROM debian:latest
 
 # copy our compiled binary
-COPY --from=builder /go/src/github.com/cloudflare/cloudflared/cloudflared /usr/local/bin/
+COPY --from=builder /go/src/cloudflared /usr/local/bin/
 
 # command / entrypoint of container
 ENTRYPOINT ["cloudflared", "--no-autoupdate"]
