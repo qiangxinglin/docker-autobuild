@@ -3,7 +3,7 @@
 </p>
 
 
-![](https://img.shields.io/badge/ARCH-x86-9cf) ![](https://img.shields.io/badge/ARCH-x86_64-red) ![](https://img.shields.io/badge/ARCH-ARM_64-ff69b4) ![](https://img.shields.io/badge/ARCH-ARM_v7-yellow) ![](https://img.shields.io/badge/ARCH-ARM_v6-yellowgreen)
+![](https://img.shields.io/badge/ARCH-x86-9cf) ![](https://img.shields.io/badge/ARCH-x86_64-red) ![](https://img.shields.io/badge/ARCH-ARM_64-ff69b4) ![](https://img.shields.io/badge/ARCH-ARM_v7-yellow) ![](https://img.shields.io/badge/ARCH-ARM_v6-green)
 
 [![Test](https://github.com/aler9/rtsp-simple-server/workflows/test/badge.svg)](https://github.com/aler9/rtsp-simple-server/actions?query=workflow:test)
 [![Lint](https://github.com/aler9/rtsp-simple-server/workflows/lint/badge.svg)](https://github.com/aler9/rtsp-simple-server/actions?query=workflow:lint)
