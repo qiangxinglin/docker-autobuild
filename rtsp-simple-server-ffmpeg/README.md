@@ -1,4 +1,8 @@
-# RTSP-Simple-Server-FFMPEG
+<p align="center">
+    <img src="https://github.com/aler9/rtsp-simple-server/raw/main/logo.png" alt="rtsp-simple-server">
+</p>
+
+
 ![](https://img.shields.io/badge/ARCH-x86-9cf) ![](https://img.shields.io/badge/ARCH-x86_64-red) ![](https://img.shields.io/badge/ARCH-ARM_64-ff69b4) ![](https://img.shields.io/badge/ARCH-ARM_v7-yellow) ![](https://img.shields.io/badge/ARCH-ARM_v6-yellowgreen)
 
 [![Test](https://github.com/aler9/rtsp-simple-server/workflows/test/badge.svg)](https://github.com/aler9/rtsp-simple-server/actions?query=workflow:test)
@@ -10,10 +14,6 @@
 
 
 > This image is buildt based on offical rtsp-simple-server image, with ffmpeg support.
-
-<p align="center">
-    <img src="https://github.com/aler9/rtsp-simple-server/raw/main/logo.png" alt="rtsp-simple-server">
-</p>
 
 _rtsp-simple-server_ is a ready-to-use and zero-dependency server and proxy that allows users to publish, read and proxy live video and audio streams through various protocols:
 
