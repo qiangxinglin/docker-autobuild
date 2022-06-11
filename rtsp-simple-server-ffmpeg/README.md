@@ -4,7 +4,7 @@
 > This image is buildt based on offical rtsp-simple-server image, with ffmpeg support.
 
 <p align="center">
-    <img src="logo.png" alt="rtsp-simple-server">
+    <img src="https://github.com/aler9/rtsp-simple-server/raw/main/logo.png" alt="rtsp-simple-server">
 </p>
 
 _rtsp-simple-server_ is a ready-to-use and zero-dependency server and proxy that allows users to publish, read and proxy live video and audio streams through various protocols:
