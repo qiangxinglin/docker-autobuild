@@ -43,13 +43,13 @@ Features:
 Download and launch the image:
 
 ```
-docker run --rm -it --network=host aler9/rtsp-simple-server
+docker run --rm -it --network=host justinzhang/rtsp-simple-server-ffmpeg
 ```
 
 The `--network=host` flag is mandatory since Docker can change the source port of UDP packets for routing reasons, and this doesn't allow the server to find out the author of the packets. This issue can be avoided by disabling the UDP transport protocol:
 
 ```
-docker run --rm -it -e RTSP_PROTOCOLS=tcp -p 8554:8554 -p 1935:1935 -p 8888:8888 aler9/rtsp-simple-server
+docker run --rm -it -e RTSP_PROTOCOLS=tcp -p 8554:8554 -p 1935:1935 -p 8888:8888 justinzhang/rtsp-simple-server-ffmpeg
 ```
 
 ## Basic usage
