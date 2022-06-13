@@ -7,7 +7,7 @@ RUN apk -U upgrade
 RUN apk add ipmitool
 
 # Copy the entrypoint script into the container
-COPY docker-entrypoint.sh /
+COPY fanoverlord/docker-entrypoint.sh /
 
 RUN chmod a+x /docker-entrypoint.sh
 
