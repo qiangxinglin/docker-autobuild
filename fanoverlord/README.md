@@ -1,3 +1,7 @@
+<p align="center">
+    <img src="https://raw.githubusercontent.com/justin-himself/docker-autobuild/master/fanoverlord/icon.png" width="40%" height="40%" alt="FanOverlord">
+</p>
+
 # FanOverlord
 This is a Docker container that uses IPMI to monitor and control the fans on a Dell EMC Poweredge server through the iDRAC using raw commands.
 
@@ -36,17 +40,9 @@ IPMIPW=<Password for the iDRAC
 
 ### Example .env file
 ```
-WEBHOOK_URL=https://hooks.slack.com/services/uiowower0982344/
-UPLOAD_TOKEN=
-CHANNEL=myawesomechannel
-TMP_DIR=
-USERNAME=slacktee
-ICON=ghost
-ATTACHMENT=
 IPMIHOST=192.168.0.50
 IPMIUSER=root
 IPMIPW=hobbes
-HC_URL=https://hc-ping.com/987asdf987asdf987as23
 ```
 
 ## Build and Run the Docker
