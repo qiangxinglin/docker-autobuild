@@ -1,0 +1,10 @@
+version: '3'
+services:
+  fanoverlord:
+    image: fanoverlord:latest
+    container_name: fanoverlord
+    environment:
+      - IPMIHOST=${IPMIHOST}
+      - IPMIUSER=${IPMIUSER}
+      - IPMIPW=${IPMIPW}
+    restart: always
