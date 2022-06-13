@@ -1,4 +1,4 @@
-FROM alpine:3.13
+FROM alpine:latest
 
 # Update the base image
 RUN apk -U upgrade
