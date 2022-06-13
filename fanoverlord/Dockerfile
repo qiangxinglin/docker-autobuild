@@ -4,7 +4,7 @@ FROM alpine:latest
 RUN apk -U upgrade
 
 # Install impitool and curl
-RUN apk add ipmitool curl git
+RUN apk add ipmitool
 
 # Copy the entrypoint script into the container
 COPY docker-entrypoint.sh /
