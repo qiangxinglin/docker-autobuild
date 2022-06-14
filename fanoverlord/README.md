@@ -3,6 +3,9 @@
 </p>
 
 # FanOverlord
+
+![](https://img.shields.io/badge/ARCH-x86-9cf) ![](https://img.shields.io/badge/ARCH-x86_64-red) ![](https://img.shields.io/badge/ARCH-ARM_64-ff69b4) ![](https://img.shields.io/badge/ARCH-ARM_v7-yellow) ![](https://img.shields.io/badge/ARCH-ARM_v6-green) ![](https://img.shields.io/badge/ARCH-IBM_Z-blue) ![](https://img.shields.io/badge/ARCH-mips64le-lightgrey)
+
 This is a Docker container that uses IPMI to monitor and control the fans on a Dell EMC Poweredge server through the iDRAC using raw commands.
 
 This script will read the ambient temp sensor every X seconds (20 by default) and then apply a custom defined fan speed to the iDRAC. It has normal, Med, High and Emergency states (all user configurable). Each state can have a custom fan speed but the Emergency state sets it back to Auto-control from the BIOS/iDRAC.
