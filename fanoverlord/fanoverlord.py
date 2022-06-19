@@ -1,13 +1,13 @@
 import os
 import time
-import math
 import atexit
 import logging
 import subprocess
+from math import *
 
 # Env Variables
 CPU_NUM   = os.environ['CPU_NUM']
-TEMP_FUNC = os.environ['TEMP_FUNC']
+SPEED_FUNC = os.environ['SPEED_FUNC']
 IPMI_HOST = os.environ['IPMI_HOST']
 IPMI_USER = os.environ['IPMI_USER']
 IPMI_PW   = os.environ['IPMI_PW']
@@ -34,7 +34,7 @@ def set_fan_control(isTakeover : bool):
 
 def get_fan_speed(t : int):
     # math.exp(0.075 * t) - 0.01 * t**2 + 10
-    return int(eval(TEMP_FUNC))
+    return int(eval(SPEED_FUNC))
 
 def on_exit():
     logging.warning("Exiting... Give over control to system.")
