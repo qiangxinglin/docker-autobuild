@@ -25,7 +25,7 @@ To make your fan speed adjustment as smooth as possible, you should choose a fun
 - Monotonically increasing      -       So the temperature always converages
 
 The default function is  <img src="https://user-images.githubusercontent.com/73123028/174479239-71d1a8d3-6518-4114-8d0f-60566024f360.png" width="20%" height="20%">, where s is fan speed and t is temperature.   
-This function works well when temperature is between 30 degrees and 60 degrees, which provides relatively low power consumption in this range.
+This function works well when temperature is between 30 degrees and 60 degrees, and provides relatively low power consumption in this range.
 
 <p align="center">
     <img src="https://user-images.githubusercontent.com/73123028/174478859-e08aa5e2-9161-47b4-9039-cc66f239d4ae.png" width="40%" height="40%">
