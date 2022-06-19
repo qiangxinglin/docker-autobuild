@@ -6,11 +6,19 @@
 
 ![](https://img.shields.io/badge/ARCH-x86-9cf) ![](https://img.shields.io/badge/ARCH-x86_64-red) ![](https://img.shields.io/badge/ARCH-ARM_64-ff69b4) ![](https://img.shields.io/badge/ARCH-ARM_v7-yellow) ![](https://img.shields.io/badge/ARCH-ARM_v6-green) ![](https://img.shields.io/badge/ARCH-PowerPC_64_le-blueviolet) ![](https://img.shields.io/badge/ARCH-IBM_Z-blue) 
 
-This is a Docker container that uses IPMI to monitor and control the fans on a Dell EMC Poweredge server through the iDRAC using raw commands.
+This is a Docker container that uses IPMI to monitor and control the fans on a Dell EMC Poweredge server through the iDRAC using raw commands.  
+This script will read the CPU temp sensor repetitively and then adjust the fan speed according to a user-defined function.  
+The script is based on orlikoski's project [fanoverlord](https://github.com/orlikoski/fanoverlord). 
 
-This script will read the CPU temp sensor repetitively and then adjust the fan speed according to a user-defined function.
+**Why not let BIOS manages the fan speed?**  
 
-The script is originated from orlikoski's project [fanoverlord](https://github.com/orlikoski/fanoverlord). 
+This script actually manages to achieve lower power-efficiency than the default dell bios does. With the power of user-defined function, you can cutomize fan speed in different scenarios.   
+
+Also, in some models (like my R720xd) the bios actually functions incorrectly after plugin addtional PCI-E device such as a graphics card, see [this](https://www.dell.com/community/PowerEdge-Hardware-General/R720-High-Fan-with-GPU/td-p/6223226), [this](https://www.dell.com/community/PowerEdge-Hardware-General/Dell-PowerEdge-T130-Fan-issue/td-p/4774859) and [this](https://www.dell.com/community/PowerEdge-Hardware-General/PowerEdge-T640-fan-full-speed-after-installing-graphic-card/td-p/5849479)
+
+**What if the script fails?**
+
+The script will give back the fan control to BIOS when force exit or malfunction.
 
 
 ### Configure iDRAC
