@@ -52,8 +52,8 @@ def main():
             current_cpu_temp = max(get_cpu_temp())
             current_fan_speed = get_fan_speed(current_cpu_temp)
             set_fan_speed(current_fan_speed)
-        except:
-            logging.error("Error occured. Exiting...")
+        except Exception as e::
+            logging.error(e)
             on_exit()
             exit(-1)
 
