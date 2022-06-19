@@ -53,6 +53,7 @@ To start the container:
 docker run \
     --name fanoverlord \
     --restart always \
+    --network host \
     -e CPU_NUM=2 \
     -e IPMI_HOST="192.168.0.120" \
     -e IPMI_USER="root" \
