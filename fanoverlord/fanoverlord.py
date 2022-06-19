@@ -6,11 +6,11 @@ import subprocess
 from math import *
 
 # Env Variables
-CPU_NUM   = int(os.environ['CPU_NUM'])
-SPEED_FUNC = os.environ['SPEED_FUNC']
-IPMI_HOST = os.environ['IPMI_HOST']
-IPMI_USER = os.environ['IPMI_USER']
-IPMI_PW   = os.environ['IPMI_PW']
+CPU_NUM   = os.environ.get('CPU_NUM')
+SPEED_FUNC = os.environ.get('SPEED_FUNC')
+IPMI_HOST = os.environ.get('IPMI_HOST')
+IPMI_USER = os.environ.get('IPMI_USER')
+IPMI_PW   = os.environ.get('IPMI_PW')
 
 # Constants
 MAX_CPU_TEMP = 60
