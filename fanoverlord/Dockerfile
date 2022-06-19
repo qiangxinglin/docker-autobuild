@@ -14,4 +14,4 @@ RUN apk add --no-cache python3
 COPY fanoverlord.py /
 
 # Load the entrypoint script to be run later
-ENTRYPOINT ["python3 /fanoverlord.py"]
+ENTRYPOINT ["/usr/bin/python3", "/fanoverlord.py"]
