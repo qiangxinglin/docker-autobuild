@@ -53,11 +53,11 @@ To start the container:
 docker run \
     --name fanoverlord \
     --restart always \
-    -e CPU_NUM = 2 \
-    -e IPMI_HOST = "192.168.0.120" \
-    -e IPMI_USER = "root" \
-    -e IPMI_PW = "calvin"
-    -e SPEED_FUNC = "exp(0.075 * t) - 0.01 * t**2 + 10" \
+    -e CPU_NUM=2 \
+    -e IPMI_HOST="192.168.0.120" \
+    -e IPMI_USER="root" \
+    -e IPMI_PW="calvin"
+    -e SPEED_FUNC="exp(0.075 * t) - 0.01 * t**2 + 10" \
     -d justinhimself/fanoverlord
 ```
 
