@@ -4,12 +4,11 @@ FROM alpine:latest
 RUN apk -U upgrade
 
 # Install impitool and curl
-RUN apk add ipmitool
+RUN apk add --no-cache ipmitool
+RUN apk add --no-cache python3 
 
 # Copy the entrypoint script into the container
-COPY docker-entrypoint.sh /
-
-RUN chmod a+x /docker-entrypoint.sh
+COPY fanoverlord.py /
 
 # Load the entrypoint script to be run later
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["python3 /fanoverlord.py"]
