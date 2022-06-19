@@ -1,3 +1,5 @@
+
+
 import os
 import time
 import math
@@ -5,10 +7,12 @@ import atexit
 import logging
 import subprocess
 
-CPU_NUM   = os.environ['CPUNUM']
-IPMI_HOST = os.environ['IPMIHOST']
-IPMI_USER = os.environ['IPMIUSER']
-IPMI_PW   = os.environ['IPMIPW']
+# Env Variables
+CPU_NUM   = os.environ['CPU_NUM']
+TEMP_FUNC = os.environ['TEMP_FUNC']
+IPMI_HOST = os.environ['IPMI_HOST']
+IPMI_USER = os.environ['IPMI_USER']
+IPMI_PW   = os.environ['IPMI_PW']
 
 # Constants
 MAX_CPU_TEMP = 60
@@ -30,8 +34,9 @@ def set_fan_control(isTakeover : bool):
     subprocess.run(CMD_PREFIX + FAN_CONTROL_PREFIX + str(hex(int(not isTakeover))), shell=True)
 
 
-def get_fan_speed(temp : int):
-    return int(math.exp(0.075 * temp) - 0.01 * temp**2 + 10)
+def get_fan_speed(t : int):
+    # math.exp(0.075 * t) - 0.01 * t**2 + 10
+    return int(eval(TEMP_FUNC))
 
 def on_exit():
     logging.warning("Exiting... Give over control to system.")
