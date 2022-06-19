@@ -6,7 +6,7 @@ import subprocess
 from math import *
 
 # Env Variables
-CPU_NUM   = os.environ['CPU_NUM']
+CPU_NUM   = int(os.environ['CPU_NUM'])
 SPEED_FUNC = os.environ['SPEED_FUNC']
 IPMI_HOST = os.environ['IPMI_HOST']
 IPMI_USER = os.environ['IPMI_USER']
