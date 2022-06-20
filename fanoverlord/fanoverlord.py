@@ -21,7 +21,7 @@ FAN_CONTROL_PREFIX = "raw 0x30 0x30 0x01 "
 # Functions
 
 def get_cpu_temp():
-    output = subprocess.run(CMD_PREFIX + "sdr type temperature | grep '^Temp' | grep -Po '\d{2}'", shell=True, capture_output=True)
+    output = subprocess.run(CMD_PREFIX + "sdr type temperature | grep '^Temp' | grep -oE '\d{2}'", shell=True, capture_output=True)
     cpu_temp = output.stdout.decode('utf-8').split("\n")[0:CPU_NUM]
     return map(int, cpu_temp)
 
