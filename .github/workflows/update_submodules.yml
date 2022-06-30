@@ -14,7 +14,8 @@ jobs:
       uses: actions/checkout@v2
     - name: Update submodules
       run: |
-        git submodule foreach 'git pull -f'
+        git clone --recurse-submodules https://github.com/chaconinc/MainProject
+        git submodule foreach 'git submodule update --remote'
     - name: update placeholder
       run: |
         rm .placeholder
