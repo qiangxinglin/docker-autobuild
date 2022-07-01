@@ -19,7 +19,7 @@ on:
 env:
   #REGISTRY: ghcr.io
   REGISTRY: docker.io
-  NAME: cloudflared
+  NAME: django-sspanel
   ARCH: linux/386, linux/amd64,  linux/arm64/v8, linux/arm/v5, linux/arm/v7
 
 jobs:
