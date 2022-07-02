@@ -1,4 +1,4 @@
-FROM php:7.2-apache
+FROM php:latest-apache
 
 COPY SSPanel-Uim/. /usr/src/sspanel/
 COPY 000-default.conf /etc/apache2/sites-enabled
