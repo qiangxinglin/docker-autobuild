@@ -21,6 +21,7 @@ env:
   REGISTRY: docker.io
   NAME: rtsp-simple-server-ffmpeg
   ARCH: linux/amd64,  linux/arm64, linux/arm/v7, linux/arm/v6
+  DESCRIPTION: rtsp-simple-server, multiarch, built-in up-to-date ffmpeg support.
 
 jobs:
   build:
