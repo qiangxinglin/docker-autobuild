@@ -47,7 +47,7 @@ docker run --name p910nd \
   --privileged \
   --restart unless-stopped \ 
   -v /dev/usb/lp0:/dev/usb/lp0 \
-  -e RINTER_DEVICE="/dev/usb/lp0" \
+  -e PRINTER_DEVICE="/dev/usb/lp0" \
   -e BIDIRECTIONAL=1 \
   -e DEBUG_INFO=0 \
   -d justinhimself/p910nd
