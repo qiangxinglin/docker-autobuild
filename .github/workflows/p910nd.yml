@@ -20,6 +20,7 @@ env:
   REGISTRY: docker.io
   NAME: p910nd
   ARCH: linux/386, linux/amd64,  linux/arm64/v8, linux/arm/v7, linux/arm/v6, linux/arm/v5, linux/mips64le, linux/ppc64le, linux/s390x
+  DESCRIPTION: p910nd multiarch docker image
 
 jobs:
   build:
