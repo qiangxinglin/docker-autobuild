@@ -38,7 +38,7 @@ docker run -d \
   -p 9100:9100 \
   -v /dev/usb/lp0:/dev/usb/lp0 \
   -v /var/lock/p910nd:/var/lock/p910nd \
-  justinhimself/p910nd:latest -bd -f /dev/usb/lp0
+  justinhimself/p910nd:latest -b -d -f /dev/usb/lp0
 ```
 
 ## Authors
