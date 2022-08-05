@@ -43,7 +43,7 @@ docker run -d \
 
 ## Authors
 
-[kenyapcomau/p910nd](https://github.com/kenyapcomau/p910nd)
+[kenyapcomau/p910nd](https://github.com/kenyapcomau/p910nd)  
 **Ken Yap** and others
 
 ## License
