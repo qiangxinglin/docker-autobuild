@@ -1,12 +1,12 @@
 ## p910nd
 
-![](https://img.shields.io/badge/ARCH-x86-9cf) 
-![](https://img.shields.io/badge/ARCH-x86_64-red) 
-![](https://img.shields.io/badge/ARCH-ARM_64-ff69b4) 
-![](https://img.shields.io/badge/ARCH-ARM_v7-yellow) 
-![](https://img.shields.io/badge/ARCH-ARM_v6-green) 
+![](https://img.shields.io/badge/ARCH-x86-9cf)
+![](https://img.shields.io/badge/ARCH-x86_64-red)
+![](https://img.shields.io/badge/ARCH-ARM_64-ff69b4)
+![](https://img.shields.io/badge/ARCH-ARM_v7-yellow)
+![](https://img.shields.io/badge/ARCH-ARM_v6-green)
 ![](https://img.shields.io/badge/ARCH-ARM_v5-yellowgreen)
-![](https://img.shields.io/badge/ARCH-PowerPC_64_le-blueviolet) 
+![](https://img.shields.io/badge/ARCH-PowerPC_64_le-blueviolet)
 ![](https://img.shields.io/badge/ARCH-IBM_Z-blue)
 ![](https://img.shields.io/badge/ARCH-mips64le-lightgrey)
 
@@ -41,28 +41,13 @@ docker run -d \
   justinhimself/p910nd:latest -bd -f /dev/usb/lp0
 ```
 
-**Run using docker env**
-
-```bash
-docker run -d \
-  --name=p910nd \
-  --privileged \
-  -v /dev/usb/lp0:/dev/usb/lp0 \
-  -v /var/lock/p910nd:/var/lock/p910nd \
-  -e PRINTER_DEVICE="/dev/usb/lp0" \
-  -e BIDIRECTIONAL=1 \
-  -e DEBUG_INFO=1 \
-  justinhimself/p910nd:latest
-```
-
 ## Authors
 
-[kenyapcomau/p910nd](https://github.com/kenyapcomau/p910nd)  
+[kenyapcomau/p910nd](https://github.com/kenyapcomau/p910nd)
 **Ken Yap** and others
 
 ## License
 
 See the [LICENSE](LICENSE.md) file for license rights and limitations (GPL2).
-
 
 
