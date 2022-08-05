@@ -20,4 +20,4 @@ else
     args=$@
 fi
 
-p910nd $args
+exec "p910nd $args"
