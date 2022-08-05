@@ -8,7 +8,7 @@
 ![](https://img.shields.io/badge/ARCH-ARM_v5-yellowgreen)
 ![](https://img.shields.io/badge/ARCH-PowerPC_64_le-blueviolet) 
 ![](https://img.shields.io/badge/ARCH-IBM_Z-blue)
- ![](https://img.shields.io/badge/ARCH-mips64le-lightgrey)
+![](https://img.shields.io/badge/ARCH-mips64le-lightgrey)
 
 > This image is built based on official p910nd package, with multiarch support
 
@@ -38,7 +38,7 @@ docker run -d \
   -p 9100:9100 \
   -v /dev/usb/lp0:/dev/usb/lp0 \
   -v /var/lock/p910nd:/var/lock/p910nd \
-  justinhimself/p910nd -bd -f /dev/usb/lp0
+  justinhimself/p910nd:latest -bd -f /dev/usb/lp0
 ```
 
 **Run using docker env**
@@ -51,8 +51,8 @@ docker run -d \
   -v /var/lock/p910nd:/var/lock/p910nd \
   -e PRINTER_DEVICE="/dev/usb/lp0" \
   -e BIDIRECTIONAL=1 \
-  -e DEBUG_INFO=0 \
-  justinhimself/p910nd
+  -e DEBUG_INFO=1 \
+  justinhimself/p910nd:latest
 ```
 
 ## Authors
