@@ -32,25 +32,27 @@ find more from `man 8 p910nd`
 **Run using commandline options**
 
 ```bash
-docker run --name p910nd \
+docker run -d \
+  --name=p910nd \
   --privileged \
-  --restart unless-stopped \ 
   -p 9100:9100 \
   -v /dev/usb/lp0:/dev/usb/lp0 \
-  -d justinhimself/p910nd -b -f /dev/usb/lp0
+  -v /var/lock/p910nd:/var/lock/p910nd \
+  justinhimself/p910nd -bd -f /dev/usb/lp0
 ```
 
 **Run using docker env**
 
 ```bash
-docker run --name p910nd \
+docker run -d \
+  --name=p910nd \
   --privileged \
-  --restart unless-stopped \ 
   -v /dev/usb/lp0:/dev/usb/lp0 \
+  -v /var/lock/p910nd:/var/lock/p910nd \
   -e PRINTER_DEVICE="/dev/usb/lp0" \
   -e BIDIRECTIONAL=1 \
   -e DEBUG_INFO=0 \
-  -d justinhimself/p910nd
+  justinhimself/p910nd
 ```
 
 ## Authors
