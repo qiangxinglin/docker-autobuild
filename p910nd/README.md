@@ -29,8 +29,6 @@ find more from `man 8 p910nd`
 
 ### Examples
 
-**Run using commandline options**
-
 ```bash
 docker run -d \
   --name=p910nd \
