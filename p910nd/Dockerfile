@@ -1,7 +1,7 @@
 FROM debian:latest
 ENV PRINTER_DEVICE="/dev/usb/lp0"
 ENV BIDIRECTIONAL=1
-ENV DEBUG_INFO=0
+ENV DEBUG_INFO=1
 COPY entrypoint.sh /
 WORKDIR /
 
