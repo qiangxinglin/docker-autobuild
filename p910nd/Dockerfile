@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM apline:latest
 WORKDIR /
-RUN apt update && apt -y install p910nd && apt clean
+RUN apk add --update p910nd
 ENTRYPOINT ["/usr/sbin/p910nd"]
