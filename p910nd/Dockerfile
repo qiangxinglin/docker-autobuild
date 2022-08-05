@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM debian:latest
 WORKDIR /
-RUN apk add --update p910nd
+RUN apt-get update && apt-get install -y p910nd && apt-get clean
 ENTRYPOINT ["/usr/sbin/p910nd"]
