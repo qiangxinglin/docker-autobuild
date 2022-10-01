@@ -3,23 +3,22 @@ name: sftp
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 12 * * *'
+    - cron: "30 12 * * *"
   #push:
-    #branches: [ master ]
-    # Publish semver tags as releases.
-    #tags: [ 'v*.*.*' ]
+  #branches: [ master ]
+  # Publish semver tags as releases.
+  #tags: [ 'v*.*.*' ]
   #pull_request:
-    #branches: [ master ]
+  #branches: [ master ]
 
 env:
   REGISTRY: docker.io
   NAME: sftp
   ARCH: linux/386, linux/amd64,linux/arm64/v8, linux/arm/v7, linux/ppc64le, linux/s390x
-  DESCRIPTION: 'Multiarch sftp image, based on atomz/sftp.'
+  DESCRIPTION: "Multiarch sftp image, based on atomz/sftp."
 
 jobs:
   build_debian:
-
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -31,15 +30,15 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: recursive
-        
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 
       - name: Install cosign
         if: github.event_name != 'pull_request'
-        uses: sigstore/cosign-installer@1e95c1de343b5b0c23352d6417ee3e48d5bcd422
+        uses: sigstore/cosign-installer@main
         with:
-          cosign-release: 'v1.4.0'
+          cosign-release: "v1.4.0"
 
       - name: Setup Docker buildx
         uses: docker/setup-buildx-action@79abd3f86f79a9d68a23c75a09a9a85889262adf
@@ -51,7 +50,7 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ secrets.DH_USERNAME }}
           password: ${{ secrets.DH_TOKEN }}
-          
+
       - name: Extract Docker metadata
         id: meta
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
@@ -60,7 +59,7 @@ jobs:
           tags: |
             type=raw, value=latest
             type=raw, value=debian
-          
+
       - name: Build and push
         id: build-and-push
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
@@ -70,10 +69,9 @@ jobs:
           platforms: ${{ env.ARCH }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          
+
       - name: Available platforms
         run: echo ${{ steps.build-and-push.outputs.platforms }}
-
 
       - name: push README to Dockerhub
         uses: christian-korneck/update-container-description-action@v1
@@ -83,8 +81,8 @@ jobs:
         with:
           destination_container_repo: ${{ secrets.DH_USERNAME }}/${{ env.NAME }}
           provider: dockerhub
-          short_description: 'Update readme.'
-          readme_file: '${{ env.NAME }}/README.md'
+          short_description: "Update readme."
+          readme_file: "${{ env.NAME }}/README.md"
 
       - name: Sign the published Docker image
         if: ${{ github.event_name != 'pull_request' }}
@@ -93,10 +91,8 @@ jobs:
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
         run: cosign sign ${{ secrets.DH_USERNAME }}/${{ env.NAME }}@${{ steps.build-and-push.outputs.digest }}
-    
 
   build_alpine:
-
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -108,15 +104,15 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: recursive
-        
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 
       - name: Install cosign
         if: github.event_name != 'pull_request'
-        uses: sigstore/cosign-installer@1e95c1de343b5b0c23352d6417ee3e48d5bcd422
+        uses: sigstore/cosign-installer@main
         with:
-          cosign-release: 'v1.4.0'
+          cosign-release: "v1.4.0"
 
       - name: Setup Docker buildx
         uses: docker/setup-buildx-action@79abd3f86f79a9d68a23c75a09a9a85889262adf
@@ -130,7 +126,7 @@ jobs:
           password: ${{ secrets.DH_TOKEN }}
           #username: ${{ github.actor }}
           #password: ${{ secrets.GITHUB_TOKEN }}
-          
+
       - name: Extract Docker metadata
         id: meta
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
@@ -138,7 +134,7 @@ jobs:
           images: ${{ secrets.DH_USERNAME }}/${{ env.NAME }}
           tags: |
             type=raw, value=alpine
-          
+
       - name: Build and push Docker image
         id: build-and-push
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
@@ -148,7 +144,7 @@ jobs:
           platforms: ${{ env.ARCH }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          
+
       - name: Available platforms
         run: echo ${{ steps.build-and-push.outputs.platforms }}
 
@@ -161,7 +157,7 @@ jobs:
           destination_container_repo: ${{ secrets.DH_USERNAME }}/${{ env.NAME }}
           provider: dockerhub
           short_description: ${{ env.DESCRIPTION }}
-          readme_file: '${{ env.NAME }}/README.md'
+          readme_file: "${{ env.NAME }}/README.md"
 
       # Sign the resulting Docker image digest except on PRs.
       # This will only write to the public Rekor transparency log when the Docker
