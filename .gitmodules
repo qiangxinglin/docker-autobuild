@@ -13,3 +13,6 @@
 [submodule "django-sspanel/django-sspanel"]
 	path = django-sspanel/django-sspanel
 	url = https://github.com/Ehco1996/django-sspanel.git
+[submodule "tor-privoxy/tor-privoxy"]
+	path = tor-privoxy/tor-privoxy
+	url = https://github.com/dockage/tor-privoxy
