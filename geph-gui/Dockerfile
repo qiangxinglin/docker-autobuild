@@ -1,10 +1,10 @@
-FROM debian:latest
+FROM rust:latest
 RUN \
   apt update && \
-  apt install -y git jq nodejs npm libatk1.0-dev libglib2.0-dev libpango1.0-0 libsoup* libgdk-pixbuf-2.0-0 && \
+  apt install -y 	libgtk-3-dev libappindicator3-dev libwebkit2gtk-4.0-dev libayatana-appindicator3-dev librsvg2-dev libssl-dev build-essential && \
   cd / && git clone https://github.com/geph-official/gephgui-wry.git && \
-  cd gephgui  && \
-  bash build-linux.sh
+  cd /gephgui-wry  && \
+  cargo build
 
 FROM ghcr.io/linuxserver/baseimage-rdesktop-web:jammy
 
