@@ -1,7 +1,8 @@
 FROM rust:latest
 RUN \
   apt update && \
-  apt install -y 	libgtk-3-dev libappindicator3-dev libwebkit2gtk-4.0-dev libayatana-appindicator3-dev librsvg2-dev libssl-dev build-essential && \
+  apt install -y 	libgtk-3-dev libappindicator3-dev libwebkit2gtk-4.0-dev libayatana-appindicator3-dev librsvg2-dev libssl-dev patchelf strace libpango1.0-dev  libgdk-pixbuf2.0-dev
+  build-essential && \
   cd / && git clone https://github.com/geph-official/gephgui-wry.git && \
   cd /gephgui-wry  && \
   cargo build
