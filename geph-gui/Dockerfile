@@ -1,7 +1,7 @@
 FROM debian:latest
 RUN \
   apt update && \
-  apt install -y git jq nodejs npm libatk1.0-dev libglib2.0-dev libpango1.0-0 libsoup2.4 libgdk-pixbuf-2.0-0 && \
+  apt install -y git jq nodejs npm libatk1.0-dev libglib2.0-dev libpango1.0-0 libsoup* libgdk-pixbuf-2.0-0 && \
   cd / && git clone https://github.com/geph-official/gephgui-wry.git && \
   cd gephgui  && \
   bash build-linux.sh
