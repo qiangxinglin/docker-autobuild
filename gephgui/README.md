@@ -25,7 +25,7 @@ docker run -d \
   -e TZ=Asia/Shanghai \
   -e PASSWORD=`#optional` \
   --name gephgui \
-  --restart unless-stoppped \
+  --restart unless-stopped \
   justinhimself/gephgui
 ```
 
