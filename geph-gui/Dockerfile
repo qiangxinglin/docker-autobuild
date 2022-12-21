@@ -27,4 +27,13 @@ ENV DEBIAN_FRONTEND="noninteractive" CUSTOM_PORT="8080"
 COPY --from=1 /build /app
 COPY root/ /
 
+RUN \
+  apt update && apt install -y \
+    libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev libssl-dev
+  apt-get clean && \
+  rm -rf \
+    /tmp/* \
+    /var/lib/apt/lists/* \
+    /var/tmp/*
+
 VOLUME /root/.config
