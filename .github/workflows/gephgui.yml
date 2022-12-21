@@ -1,4 +1,4 @@
-name: geph-gui
+name: gephgui
 # This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
@@ -18,7 +18,7 @@ on:
 env:
   #REGISTRY: ghcr.io
   REGISTRY: docker.io
-  NAME: geph-gui
+  NAME: gephgui
   ARCH: linux/amd64
   DESCRIPTION: geph gui docker image
 
