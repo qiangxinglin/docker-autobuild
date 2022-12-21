@@ -6,8 +6,6 @@
 
 ## Description
 
-![screenshot](screenshot.png)
-
 This image enables you to run GephGui (迷雾通) in a docker container. You can use the proxy at port 9909 (Socks5 Proxy) and port 9910(HTTP Proxy).
 
 The best use case of this container is to run it on your router, so every device connected to the router can use the proxy transparently. If you have a router and installed Openwrt, follow the tutorial below.
@@ -83,6 +81,10 @@ docker build \
   --pull \
   -t justin-himself/gephgui:latest .
 ```
+
+## Screenshots
+
+![screenshot](screenshot.png)
 
 ## Reference
 
