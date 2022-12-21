@@ -31,7 +31,8 @@ COPY --from=1 /build/ /app/
 COPY root/ /
 
 RUN \
-  for file in /app/*; do ln -s /app/$file /usr/bin/$file; done && \
+  cd /app &&\
+  for file in *; do ln -s ./$file /usr/bin/$file; done &&\
   echo "deb http://security.ubuntu.com/ubuntu focal-security main" | \
     tee /etc/apt/sources.list.d/focal-security.list && \
   apt update && apt install -y \
