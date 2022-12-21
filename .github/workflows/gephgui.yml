@@ -19,8 +19,8 @@ env:
   #REGISTRY: ghcr.io
   REGISTRY: docker.io
   NAME: gephgui
-  ARCH: linux/amd64
-  DESCRIPTION: geph gui docker image
+  ARCH: linux/amd64, linux/arm64, linux/arm/v7
+  DESCRIPTION: gephgui-wry docker image
 
 jobs:
   build:
