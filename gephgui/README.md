@@ -14,9 +14,7 @@ The best use case of this container is to run it on your router, so every device
 
 ## Usage
 
-Here are some example snippets to help you get started creating a container.
-
-> docker-cli:
+Here's some instrction on how to run the container.
 
 ```bash
 docker run -d \
