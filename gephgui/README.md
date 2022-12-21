@@ -2,7 +2,7 @@
 
 ---
 
-![](https://img.shields.io/badge/ARCH-x86_64-red) ![](https://img.shields.io/badge/ARCH-ARM_64-ff69b4) ![](https://img.shields.io/badge/ARCH-ARM_v7-yellow)
+![](https://img.shields.io/badge/ARCH-x86_64-red)
 
 ## Description
 
