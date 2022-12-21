@@ -10,5 +10,6 @@ RUN \
 
 # final image
 FROM alpine:latest
-COPY --from=0 /geph4-client/target/release/geph4-client /usr/bin/
+COPY --from=0 /geph4-client/target/release/geph4-client /usr/bin/geph4-client
+RUN ls -l /usr/bin/geph4-client
 ENTRYPOINT  ["/usr/bin/geph4-client"]
