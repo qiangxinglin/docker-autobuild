@@ -17,9 +17,9 @@ docker run -d \
   -p 9909:9909 \
   -p 9910:9910 \
   -p 8080:8080 \
-  -v /path/to/geph/data:/root/.config/geph4-credentials \
-  -e PUID=0 \
-  -e PGID=0 \
+  -v /path/to/config:/config \
+  -e PUID=1000 \
+  -e PGID=1000 \
   -e TZ=Asia/Shanghai \
   -e PASSWORD=`#optional` \
   --name gephgui \
@@ -49,8 +49,8 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-p 9910`             | HTTP Proxy                                    |
 | `-p 8080`             | GephGui interface                             |
 | `-v config`           | Where GephGui stores the user data and config |
-| `-e PUID=0`           | for UserID - see below for explanation        |
-| `-e PGID=0`           | for GroupID - see below for explanation       |
+| `-e PUID=1000`        | for UserID - see below for explanation        |
+| `-e PGID=1000`        | for GroupID - see below for explanation       |
 | `-e TZ=Asia/Shanghai` | Specify a timezone to use Asia/Shanghai       |
 | `-e PASSWORD=`        | Optionally set a password for the web gui.    |
 
@@ -60,7 +60,12 @@ When using volumes (`-v` flags) permissions issues can arise between the host OS
 
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
 
-Edit: PUID and GUID must equal to 0 for persistant config to work, because gephgui stores config at ~/.config.
+In this instance `PUID=1000` and `PGID=1000`, to find yours use id user as below:
+
+```bash
+  $ id username
+    uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
+```
 
 ## Build locally
 
