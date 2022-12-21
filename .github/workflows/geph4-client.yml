@@ -19,7 +19,7 @@ env:
   #REGISTRY: ghcr.io
   REGISTRY: docker.io
   NAME: geph4-client
-  ARCH: linux/386, linux/amd64, linux/arm64/v8, linux/arm/v7
+  ARCH: linux/386, linux/amd64, linux/arm64/v8
   DESCRIPTION: geph4-client multiarch image
 
 jobs:
