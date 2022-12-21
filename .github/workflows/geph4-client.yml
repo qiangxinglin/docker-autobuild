@@ -18,7 +18,7 @@ on:
 env:
   #REGISTRY: ghcr.io
   REGISTRY: docker.io
-  NAME: gephgui
+  NAME: geph4-client
   ARCH: linux/amd64
   DESCRIPTION: geph4-client multiarch image
 
