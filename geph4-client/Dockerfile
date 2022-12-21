@@ -11,5 +11,5 @@ RUN \
 
 # final image
 FROM alpine:latest
-COPY --from=1 /build/ /usr/bin
+COPY --from=0 /build/ /usr/bin
 ENTRYPOINT  /usr/bin/geph4-client
