@@ -42,5 +42,3 @@ RUN \
     /tmp/* \
     /var/lib/apt/lists/* \
     /var/tmp/*
-
-VOLUME /root/.config/geph4-credentials
