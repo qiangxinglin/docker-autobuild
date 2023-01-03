@@ -5,7 +5,7 @@ RUN \
     libmpfr-dev libgmp-dev  build-essential && \
   curl https://sh.rustup.rs -sSf > /tmp/rust_install.sh &&\
   sh /tmp/rust_install.sh -y &&\
-  source $HOME/.cargo/env &&\
+  . $HOME/.cargo/env &&\
   git clone https://github.com/geph-official/geph4-client.git /geph4-client && \
   cd /geph4-client && cargo build --release &&\
   chmod u+x /geph4-client/target/release/geph4-client 
