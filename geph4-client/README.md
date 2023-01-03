@@ -29,8 +29,6 @@ docker stop geph4-tmp && docker rm geph4-tmp
 
 ```bash
 docker run -d \
-  --name geph4-client \
-  --restart unless-stopped \
   -p 9809:9809 \
   -p 9909:9909 \
   -p 9910:9910 \
@@ -39,7 +37,10 @@ docker run -d \
   -e USERNAME=`#optional` \
   -e PASSWORD=`#optional` \
   -e EXIT_SERVER=`#optional` \
-  --mac-address="12:34:56:78:9a:bc" \
+  --name geph4-client \
+  --restart unless-stopped \
+  --mac-address 12:34:56:78:9a:bc \
+  --ip 172.20.0.10 \
   --log-driver local \
   --log-opt max-size=10m \
   justinhimself/geph4-client
@@ -59,7 +60,8 @@ Here's an explanation for the parameters above:
 | `-e USERNAME=`    | Geph username. Default will use guest account.   |
 | `-e PASSWORD=`    | Geph password. Default will use guest password.  |
 | `-e EXIT_SERVER=` | Exit server, example: `1.mtl.ca.ngexits.geph.io` |
-| `--mac-address=`  | Set mac-address of the container, optional       |
+| `--mac-address`   | Set mac-address of the container, optional       |
+| `--ip`            | Set ip-address of the container, optional        |
 
 Container will output a list of exit servers that you can use in docker log.
 
