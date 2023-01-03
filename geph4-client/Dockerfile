@@ -9,7 +9,7 @@ RUN \
   chmod +x /geph4-client/target/release/geph4-client 
 
 # final image
-FROM alpine:latest
+FROM debian:latest
 COPY --from=0 /geph4-client/target/release/geph4-client /usr/bin/geph4-client
 RUN ls -l /usr/bin/geph4-client
-ENTRYPOINT  ["/usr/bin/geph4-client"]
+CMD  ["/usr/bin/geph4-client"]
