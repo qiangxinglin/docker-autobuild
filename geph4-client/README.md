@@ -39,6 +39,8 @@ docker run -d \
   -e USERNAME=`#optional` \
   -e PASSWORD=`#optional` \
   -e EXIT_SERVER=`#optional` \
+  --log-driver local \
+  --log-opt max-size=10m \
   justinhimself/geph4-client
 ```
 
