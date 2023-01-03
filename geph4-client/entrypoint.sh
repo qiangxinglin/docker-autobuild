@@ -17,17 +17,6 @@ if [ -z "$PASSWORD" ]; then
     exit
 fi
 
-echo -e "\n---------------------\n"
-
-
-/usr/bin/geph4-client sync \
-  --credential-cache /config \
-  --username $USERNAME \
-  --password $PASSWORD \
-  | jq 
-
-
-echo -e "\n---------------------\n"
 
 cmd="/usr/bin/geph4-client connect "
 cmd+="--credential-cache /config "
@@ -51,7 +40,17 @@ $USE_TCP && cmd+="--use-tcp "
 [ -z "$UDP_SHARD_LIFETIME" ] || cmd+="--udp-shard-lifetime $UDP_SHARD_LIFETIME "
 [ -z "$EXTRA_PARAMS" ] || cmd+="$EXTRA_PARAMS"
 
+echo -e "\n---------------------\n"
+
 echo -n "$cmd"
+
+echo -e "\n\n---------------------\n"
+
+/usr/bin/geph4-client sync \
+  --credential-cache /config \
+  --username $USERNAME \
+  --password $PASSWORD \
+  | jq 
 
 echo -e "\n\n---------------------\n"
 
