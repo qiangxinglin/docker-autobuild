@@ -74,8 +74,6 @@ jobs:
           platforms: ${{ env.ARCH }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha
 
       - name: Available platforms
         run: echo ${{ steps.build-and-push.outputs.platforms }}

@@ -1,0 +1,14 @@
+name: Wipe Action Cache
+on:
+  workflow_dispatch:
+
+jobs:
+  my-job:
+    name: Delete all caches
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Clear caches
+        uses: easimon/wipe-cache@main
+        with:
+          dry-run: "false"
