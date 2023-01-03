@@ -1,6 +1,11 @@
-# build geph4-client and gephgui-wry, fetch blobs
+# syntax = docker/dockerfile:experimental
+# https://github.com/rust-lang/cargo/issues/8719
+
 FROM rust:buster
-RUN \
+RUN --security=insecure \
+  mkdir -p /root/.cargo &&\
+  chmod 777 /root/.cargo &&\
+  mount -t tmpfs none /root/.cargo &&\
   apt update && apt install -y \
     gcc clang g++ zlib1g-dev libmpc-dev \
     libmpfr-dev libgmp-dev  build-essential && \
