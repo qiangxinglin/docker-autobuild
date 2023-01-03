@@ -76,6 +76,7 @@ jobs:
           platforms: ${{ env.ARCH }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          allow: security.insecure
 
       - name: Available platforms
         run: echo ${{ steps.build-and-push.outputs.platforms }}
