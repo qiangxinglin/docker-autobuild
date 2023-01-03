@@ -1,4 +1,4 @@
-<img src="logo.png" width="50%" alt="迷雾通 logo">
+<img src="https://raw.githubusercontent.com/justin-himself/docker-autobuild/master/gephgui/logo.png" width="50%" alt="迷雾通 logo">
 
 ---
 
