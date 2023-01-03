@@ -39,6 +39,7 @@ docker run -d \
   -e USERNAME=`#optional` \
   -e PASSWORD=`#optional` \
   -e EXIT_SERVER=`#optional` \
+  --mac-address="12:34:56:78:9a:bc" \
   --log-driver local \
   --log-opt max-size=10m \
   justinhimself/geph4-client
@@ -58,6 +59,7 @@ Here's an explanation for the parameters above:
 | `-e USERNAME=`    | Geph username. Default will use guest account.   |
 | `-e PASSWORD=`    | Geph password. Default will use guest password.  |
 | `-e EXIT_SERVER=` | Exit server, example: `1.mtl.ca.ngexits.geph.io` |
+| `--mac-address=`  | Set mac-address of the container, optional       |
 
 Container will output a list of exit servers that you can use in docker log.
 
