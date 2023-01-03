@@ -34,6 +34,11 @@ cmd="/usr/bin/geph4-client connect "
 cmd+="--credential-cache /config "
 cmd+="--username $USERNAME "
 cmd+="--password $PASSWORD "
+cmd+="--stats-listen 0.0.0.0:9809 "
+cmd+="--socks5-listen 0.0.0.0:9909 "
+cmd+="--http-listen 0.0.0.0:9910 "
+cmd+="--dns-listen 0.0.0.0:15353 "
+
 
 $EXCLUDE_PRC && cmd+="--exclude-prc "
 $STICKY_BRIDGES && cmd+="--sticky-bridges "
