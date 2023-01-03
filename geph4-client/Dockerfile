@@ -6,10 +6,9 @@ RUN \
     libmpfr-dev libgmp-dev  build-essential && \
   git clone https://github.com/geph-official/geph4-client.git /geph4-client && \
   cd /geph4-client && cargo build --release &&\
-  chmod +x /geph4-client/target/release/geph4-client 
+  chmod u+x /geph4-client/target/release/geph4-client 
 
 # final image
 FROM debian:latest
 COPY --from=0 /geph4-client/target/release/geph4-client /usr/bin/geph4-client
-RUN ls -l /usr/bin/geph4-client
 CMD  ["/usr/bin/geph4-client"]
