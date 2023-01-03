@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:latest
 RUN \ 
   apt update && apt install -y \
     gcc clang g++ zlib1g-dev libmpc-dev git curl \
