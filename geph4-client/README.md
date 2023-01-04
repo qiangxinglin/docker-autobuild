@@ -142,9 +142,9 @@ iptables -t mangle -N GEPHUDP
     iptables -t mangle -A GEPHUDP -d 224.0.0.0/4 -j RETURN
     iptables -t mangle -A GEPHUDP -d 240.0.0.0/4 -j RETURN
     # 中国大陆 IP 直连
-    iptables -t mangle -A GEPHUDP -p udp -m set --match-set chnroute dst -j RETURN
+    # iptables -t mangle -A GEPHUDP -p udp -m set --match-set chnroute dst -j RETURN
     # TPROXY 代理
-    iptables -t mangle -A GEPHUDP -p udp -j TPROXY –on-port 10053 –tproxy-mark 0x01/0x01
+    iptables -t mangle -A GEPHUDP -p udp -j TPROXY -–on-port 10053 –tproxy-mark 0x01/0x01
 iptables -t mangle -A PREROUTING -p udp -j GEPHUDP
 
 iptables -t mangle -N GEPHTCP
@@ -162,7 +162,7 @@ iptables -t mangle -N GEPHTCP
     # 中国大陆 IP 直连
     iptables -t mangle -A GEPHTCP -p tcp -m set --match-set chnroute dst -j RETURN
     # TPROXY 代理
-    iptables -t mangle -A GEPHTCP -p tcp -j TPROXY –on-port 12345 –tproxy-mark 0x01/0x01
+    iptables -t mangle -A GEPHTCP -p tcp -j TPROXY -–on-port 12345 –tproxy-mark 0x01/0x01
 iptables -t mangle -A PREROUTING -p udp -j GEPHTCP
 
 # 新建 DIVERT 规则，避免已有连接的包二次通过 TPROXY，理论上有一定的性能提升
@@ -195,4 +195,41 @@ ipset -N chnroute hash:net maxelem 65536
 for ip in $(cat '/etc/geph-proxy/chnroute.txt'); do
     ipset add chnroute $ip
 done
+```
+
+```bash
+iptables -t nat -N SHADOWSOCKS
+
+# Allow connection to the server
+iptables -t nat -A SHADOWSOCKS -s 0.0.0.0 -j RETURN
+iptables -t nat -A SHADOWSOCKS -s 127.0.0.1 -j RETURN
+
+# Allow connection to reserved networks
+iptables -t nat -A SHADOWSOCKS -d 0.0.0.0/8 -j RETURN
+iptables -t nat -A SHADOWSOCKS -d 10.0.0.0/8 -j RETURN
+iptables -t nat -A SHADOWSOCKS -d 127.0.0.0/8 -j RETURN
+iptables -t nat -A SHADOWSOCKS -d 169.254.0.0/16 -j RETURN
+iptables -t nat -A SHADOWSOCKS -d 172.16.0.0/12 -j RETURN
+iptables -t nat -A SHADOWSOCKS -d 192.168.0.0/16 -j RETURN
+iptables -t nat -A SHADOWSOCKS -d 224.0.0.0/4 -j RETURN
+iptables -t nat -A SHADOWSOCKS -d 240.0.0.0/4 -j RETURN
+
+# 如果你想对 icmp 协议也实现智能分流，可以加上下面这一条
+# iptables -t nat -A SHADOWSOCKS -p icmp -m set --match-set chnroute dst -j RETURN
+
+# Redirect to Shadowsocks
+# 把1081改成你的shadowsocks本地端口
+iptables -t nat -A SHADOWSOCKS -p tcp -j REDIRECT --to-port 12345
+# 如果你想对 icmp 协议也实现智能分流，可以加上下面这一条
+# iptables -t nat -A SHADOWSOCKS -p icmp -j REDIRECT --to-port 1081
+
+# 将SHADOWSOCKS链中所有的规则追加到OUTPUT链中
+iptables -t nat -A OUTPUT -p tcp -j SHADOWSOCKS
+# 如果你想对 icmp 协议也实现智能分流，可以加上下面这一条
+# iptables -t nat -A OUTPUT -p icmp -j SHADOWSOCKS
+
+# 内网流量流经 shadowsocks 规则链
+iptables -t nat -A PREROUTING -s 192.168/16 -j SHADOWSOCKS
+# 内网流量源NAT
+iptables -t nat -A POSTROUTING -s 192.168/16 -j MASQUERADE
 ```
