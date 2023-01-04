@@ -6,8 +6,8 @@ echo " | (_| |  __/ |_) | | | |__   _|_____| (__| | |  __/ | | | |_ "
 echo "  \__, |\___| .__/|_| |_|  |_|        \___|_|_|\___|_| |_|\__|"
 echo "  |___/     |_|                                               "
 
-[ -z "$USERNAME" ] || USERNAME="guest12345"
-[ -z "$PASSWORD" ] || PASSWORD="guest12345"
+[ -z "$USERNAME" ] && USERNAME="guest12345"
+[ -z "$PASSWORD" ] && PASSWORD="guest12345"
 
 cmd="/usr/bin/geph4-client connect "
 cmd+="--credential-cache /config "
