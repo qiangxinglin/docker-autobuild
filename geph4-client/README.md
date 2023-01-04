@@ -39,8 +39,6 @@ docker run -d \
   -e EXIT_SERVER=`#optional` \
   --name geph4-client \
   --restart unless-stopped \
-  --mac-address 12:34:56:78:9a:bc \
-  --ip 172.20.0.10 \
   --log-driver local \
   --log-opt max-size=10m \
   justinhimself/geph4-client
@@ -95,15 +93,31 @@ Here's an explanation for the additional parameters. Leave these field empty wil
 | `-e UDP_SHARD_LIFETIME=` | `""`         | Lifetime of a single UDP port. Geph will switch to a different port within this many seconds (default: 30)                                                                                                                   |
 | `-e EXTRA_PARAMS=`       | `""`         | Any text here will be appended after the command.                                                                                                                                                                            |
 
-## Build locally
+## 在 Openwrt 上搭配 iptables 使用
 
-The Dockerfile is publically availiable at [justin-himself/docker-autobuild](https://github.com/justin-himself/docker-autobuild). Execute the followling command if you want to build a custom version of the image.
+这部分的文档我还没写完.
 
 ```bash
-git clone https://github.com/justin-himself/docker-autobuild.git
-cd docker-autobuild/gephgui
-docker build \
-  --no-cache \
-  --pull \
-  -t justin-himself/gephgui:latest .
+docker network create \
+  --subnet=192.168.10.0/24 \
+  --gateway=192.168.10.1 \
+  --ip-range=192.168.10.99/32 \
+  -d macvlan -o parent=br-lan \
+  geph4-client
+
+docker run -d \
+  --net geph4-client \
+  -p 9809:9809 \
+  -p 9909:9909 \
+  -p 9910:9910 \
+  -p 15353:15353 \
+  -v /path/to/config:/config \
+  -e USERNAME=`#optional` \
+  -e PASSWORD=`#optional` \
+  -e EXIT_SERVER=`#optional` \
+  --name geph4-client \
+  --restart unless-stopped \
+  --log-driver local \
+  --log-opt max-size=10m \
+  justinhimself/geph4-client
 ```
