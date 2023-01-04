@@ -11,11 +11,11 @@ RUN \
 FROM debian:latest
 
 COPY --from=0 /geph4-client/target/release/geph4-client /usr/bin/geph4-client
-COPY entrypoint.sh /
+COPY root/ /
 
 RUN \
-  chmod u+x /entrypoint.sh &&\
-  apt update && apt install -y ca-certificates jq &&\
+  chmod u+x /entrypoint.sh /keep-alive.sh &&\
+  apt update && apt install -y curl ca-certificates jq &&\
   apt-get clean && \
   rm -rf \
     /tmp/* \

@@ -54,4 +54,6 @@ echo -e "\n\n---------------------\n"
 
 echo -e "\n\n---------------------\n"
 
+
+bash /keep-alive.sh &> /dev/null &
 eval "$cmd"
