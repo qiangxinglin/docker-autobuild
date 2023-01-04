@@ -126,110 +126,23 @@ docker run -d \
 > https://community.geph.io/t/topic/3780/2
 
 ```bash
-ip route add local 0.0.0.0/0 dev lo table 100
-ip rule add fwmark 1 table 100
+#全局TCP代理规则    iptables+REDIRECT
+iptables -t nat -N REDTCP
+iptables -t nat -A REDTCP -d 0.0.0.0/8 -j RETURN
+iptables -t nat -A REDTCP -d 10.0.0.0/8 -j RETURN
+iptables -t nat -A REDTCP -d 100.64.0.0/10 -j RETURN
+iptables -t nat -A REDTCP -d 127.0.0.0/8 -j RETURN
+iptables -t nat -A REDTCP -d 169.254.0.0/16 -j RETURN
+iptables -t nat -A REDTCP -d 172.16.0.0/12 -j RETURN
+iptables -t nat -A REDTCP -d 192.168.0.0/16 -p tcp ! --dport 53 -j RETURN
+iptables -t nat -A REDTCP -d 198.18.0.0/15 -j RETURN
+iptables -t nat -A REDTCP -d 224.0.0.0/4 -j RETURN
+iptables -t nat -A REDTCP -d 240.0.0.0/4 -j RETURN
+iptables -t nat -A REDTCP -p tcp -j REDIRECT --to-ports 12345
+iptables -t nat -A PREROUTING -p tcp -j REDTCP
 
-iptables -t mangle -N GEPHUDP
-    # 迷雾通流量直连
-    iptables -t mangle -A GEPHUDP -s $CONTAINER_IP/32  -j RETURN
-    # 局域网 IP 直连
-    iptables -t mangle -A GEPHUDP -d 0.0.0.0/8 -j RETURN
-    iptables -t mangle -A GEPHUDP -d 10.0.0.0/8 -j RETURN
-    iptables -t mangle -A GEPHUDP -d 127.0.0.0/8 -j RETURN
-    iptables -t mangle -A GEPHUDP -d 169.254.0.0/16 -j RETURN
-    iptables -t mangle -A GEPHUDP -d 172.16.0.0/12 -j RETURN
-    iptables -t mangle -A GEPHUDP -d 192.168.0.0/16 -j RETURN
-    iptables -t mangle -A GEPHUDP -d 224.0.0.0/4 -j RETURN
-    iptables -t mangle -A GEPHUDP -d 240.0.0.0/4 -j RETURN
-    # 中国大陆 IP 直连
-    # iptables -t mangle -A GEPHUDP -p udp -m set --match-set chnroute dst -j RETURN
-    # TPROXY 代理
-    iptables -t mangle -A GEPHUDP -p udp -j TPROXY -–on-port 10053 –tproxy-mark 0x01/0x01
-iptables -t mangle -A PREROUTING -p udp -j GEPHUDP
-
-iptables -t mangle -N GEPHTCP
-    # 迷雾通流量直连
-    iptables -t mangle -A GEPHTCP -s $CONTAINER_IP/32  -j RETURN
-    # 局域网 IP 直连
-    iptables -t mangle -A GEPHTCP -d 0.0.0.0/8 -j RETURN
-    iptables -t mangle -A GEPHTCP -d 10.0.0.0/8 -j RETURN
-    iptables -t mangle -A GEPHTCP -d 127.0.0.0/8 -j RETURN
-    iptables -t mangle -A GEPHTCP -d 169.254.0.0/16 -j RETURN
-    iptables -t mangle -A GEPHTCP -d 172.16.0.0/12 -j RETURN
-    iptables -t mangle -A GEPHTCP -d 192.168.0.0/16 -j RETURN
-    iptables -t mangle -A GEPHTCP -d 224.0.0.0/4 -j RETURN
-    iptables -t mangle -A GEPHTCP -d 240.0.0.0/4 -j RETURN
-    # 中国大陆 IP 直连
-    iptables -t mangle -A GEPHTCP -p tcp -m set --match-set chnroute dst -j RETURN
-    # TPROXY 代理
-    iptables -t mangle -A GEPHTCP -p tcp -j TPROXY -–on-port 12345 –tproxy-mark 0x01/0x01
-iptables -t mangle -A PREROUTING -p udp -j GEPHTCP
-
-# 新建 DIVERT 规则，避免已有连接的包二次通过 TPROXY，理论上有一定的性能提升
-iptables -t mangle -N DIVERT
-    iptables -t mangle -I PREROUTING -p tcp -m socket -j DIVERT
-    iptables -t mangle -A DIVERT -j MARK --set-mark 1
-iptables -t mangle -A DIVERT -j ACCEPT
-```
-
-```bash
-iptables -t mangle -F GEPHTCP
-iptables -t mangle -X GEPHTCP
-iptables -t mangle -F GEPHUDP
-iptables -t mangle -X GEPHUDP
-iptables -t mangle -F DIVERT
-iptables -t mangle -X DIVERT
-ip rule del fwmark 1 table 100
-ip route del local 0.0.0.0/0 dev lo table 100
-ip route flush cache
-ipset destroy chnroute
-```
-
-```bash
-# 下载中国 ip 区段
-# https://icloudnative.io/posts/linux-circumvent
-wget -c http://ftp.apnic.net/stats/apnic/delegated-apnic-latest
-cat delegated-apnic-latest | awk -F '|' '/CN/&&/ipv4/ {print $4 "/" 32-log($5)/log(2)}' | cat > /etc/geph-proxy/chnroute.txt
-
-ipset -N chnroute hash:net maxelem 65536
-for ip in $(cat '/etc/geph-proxy/chnroute.txt'); do
-    ipset add chnroute $ip
-done
-```
-
-```bash
-iptables -t nat -N SHADOWSOCKS
-
-# Allow connection to the server
-iptables -t nat -A SHADOWSOCKS -s 0.0.0.0 -j RETURN
-iptables -t nat -A SHADOWSOCKS -s 127.0.0.1 -j RETURN
-
-# Allow connection to reserved networks
-iptables -t nat -A SHADOWSOCKS -d 0.0.0.0/8 -j RETURN
-iptables -t nat -A SHADOWSOCKS -d 10.0.0.0/8 -j RETURN
-iptables -t nat -A SHADOWSOCKS -d 127.0.0.0/8 -j RETURN
-iptables -t nat -A SHADOWSOCKS -d 169.254.0.0/16 -j RETURN
-iptables -t nat -A SHADOWSOCKS -d 172.16.0.0/12 -j RETURN
-iptables -t nat -A SHADOWSOCKS -d 192.168.0.0/16 -j RETURN
-iptables -t nat -A SHADOWSOCKS -d 224.0.0.0/4 -j RETURN
-iptables -t nat -A SHADOWSOCKS -d 240.0.0.0/4 -j RETURN
-
-# 如果你想对 icmp 协议也实现智能分流，可以加上下面这一条
-# iptables -t nat -A SHADOWSOCKS -p icmp -m set --match-set chnroute dst -j RETURN
-
-# Redirect to Shadowsocks
-# 把1081改成你的shadowsocks本地端口
-iptables -t nat -A SHADOWSOCKS -p tcp -j REDIRECT --to-port 12345
-# 如果你想对 icmp 协议也实现智能分流，可以加上下面这一条
-# iptables -t nat -A SHADOWSOCKS -p icmp -j REDIRECT --to-port 1081
-
-# 将SHADOWSOCKS链中所有的规则追加到OUTPUT链中
-iptables -t nat -A OUTPUT -p tcp -j SHADOWSOCKS
-# 如果你想对 icmp 协议也实现智能分流，可以加上下面这一条
-# iptables -t nat -A OUTPUT -p icmp -j SHADOWSOCKS
-
-# 内网流量流经 shadowsocks 规则链
-iptables -t nat -A PREROUTING -s 192.168/16 -j SHADOWSOCKS
-# 内网流量源NAT
-iptables -t nat -A POSTROUTING -s 192.168/16 -j MASQUERADE
+# 局部UDP代理规则 (开启全局UDP 这部分要注释掉) 手动指定IP端口 可解决DNS污染
+iptables -t nat -N REDDNS
+iptables -t nat -A REDDNS -p udp --dport 53 -j REDIRECT --to-ports 10053
+iptables -t nat -A PREROUTING -p udp -j REDDNS
 ```
