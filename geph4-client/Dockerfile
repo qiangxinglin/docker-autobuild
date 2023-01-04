@@ -15,7 +15,8 @@ COPY root/ /
 
 RUN \
   chmod u+x /entrypoint.sh /keep-alive.sh &&\
-  apt update && apt install -y curl ca-certificates jq &&\
+  apt update && apt install -y \
+    curl ca-certificates jq redsocks &&\
   apt-get clean && \
   rm -rf \
     /tmp/* \
@@ -26,7 +27,9 @@ EXPOSE 9809
 EXPOSE 9909
 EXPOSE 9910
 EXPOSE 15353
+EXPOSE 12345
 VOLUME /config
+WORKDIR /
 
 # 1 means flag is present
 ENV EXCLUDE_PRC=true

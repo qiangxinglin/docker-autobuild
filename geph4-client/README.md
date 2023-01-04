@@ -8,7 +8,9 @@
 
 ## Description
 
-This is a mutiarch iamge of geph4-client. The purpose of this image is to:
+This is a mutiarch iamge of geph4-client, with built-in redsocks functionality.
+
+The purpose of this image is to:
 
 - provide a daily build of geph4-client binary
 - make it easier to run geph4 on operating systems like Openwrt
@@ -33,6 +35,7 @@ docker run -d \
   -p 9909:9909 \
   -p 9910:9910 \
   -p 15353:15353 \
+  -p 12345:12345 \
   -v /path/to/config:/config \
   -e USERNAME=`#optional` \
   -e PASSWORD=`#optional` \
@@ -54,6 +57,7 @@ Here's an explanation for the parameters above:
 | `-p 9909`         | Where to listen for SOCKS5 connections           |
 | `-p 9910`         | Where to listen for HTTP proxy connections       |
 | `-p 15353`        | Where to listen for proxied DNS requests         |
+| `-p 12345`        | Redsocks TCP redirection port                    |
 | `-v config`       | Where to store Geph's credential cache.          |
 | `-e USERNAME=`    | Geph username. Default will use guest account.   |
 | `-e PASSWORD=`    | Geph password. Default will use guest password.  |
@@ -92,32 +96,3 @@ Here's an explanation for the additional parameters. Leave these field empty wil
 | `-e UDP_SHARD_COUNT=`    | `""`         | Number of local UDP ports to use per session. This works around situations where unlucky ECMP routing sends flows down a congested path even when other paths exist, by "averaging out" all the possible routes (default: 1) |
 | `-e UDP_SHARD_LIFETIME=` | `""`         | Lifetime of a single UDP port. Geph will switch to a different port within this many seconds (default: 30)                                                                                                                   |
 | `-e EXTRA_PARAMS=`       | `""`         | Any text here will be appended after the command.                                                                                                                                                                            |
-
-## 在 Openwrt 上搭配 iptables 使用
-
-这部分的文档我还没写完.
-
-```bash
-docker network create \
-  --subnet=192.168.10.0/24 \
-  --gateway=192.168.10.1 \
-  --ip-range=192.168.10.99/32 \
-  -d macvlan -o parent=br-lan \
-  geph4-client
-
-docker run -d \
-  --net geph4-client \
-  -p 9809:9809 \
-  -p 9909:9909 \
-  -p 9910:9910 \
-  -p 15353:15353 \
-  -v /path/to/config:/config \
-  -e USERNAME=`#optional` \
-  -e PASSWORD=`#optional` \
-  -e EXIT_SERVER=`#optional` \
-  --name geph4-client \
-  --restart unless-stopped \
-  --log-driver local \
-  --log-opt max-size=10m \
-  justinhimself/geph4-client
-```

@@ -47,4 +47,6 @@ echo -e "\n\n---------------------\n"
 
 
 bash /keep-alive.sh &> /dev/null &
+redsocks -c /redsocks.conf &> /dev/null &
+
 eval "$cmd"
