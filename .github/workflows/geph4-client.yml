@@ -19,7 +19,7 @@ env:
   #REGISTRY: ghcr.io
   REGISTRY: docker.io
   NAME: geph4-client
-  ARCH: linux/amd64
+  ARCH: linux/amd64, linux/arm64, linux/386
   DESCRIPTION: Multiarch geph4-client with built-in redsocks.
 
 jobs:
