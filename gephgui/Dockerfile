@@ -41,5 +41,3 @@ RUN \
     /tmp/* \
     /var/lib/apt/lists/* \
     /var/tmp/*
-
-      [ $(uname -i) == "x86_64" ] && echo 1 || echo 2
