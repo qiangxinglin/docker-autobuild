@@ -31,15 +31,7 @@ COPY --from=1 /build/ /app/
 COPY root/ /
 
 RUN \
-  if [ $(uname -i) == "x86_64" ]; then
-    echo "deb http://security.ubuntu.com/ubuntu focal-security main" | \
-      tee /etc/apt/sources.list.d/focal-security.list
-  else
-    echo "deb http://ports.ubuntu.com/ubuntu-ports focal-security main" | \
-      tee /etc/apt/sources.list.d/focal-security.list
-  fi
-
-RUN \
+  bash /install_libssl1.1.sh &&\
   cd /app &&\
   for file in *; do ln -s ./$file /usr/bin/$file; done &&\
   apt update && apt install -y \
