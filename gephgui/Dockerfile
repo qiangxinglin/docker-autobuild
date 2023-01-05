@@ -31,11 +31,13 @@ COPY --from=1 /build/ /app/
 COPY root/ /
 
 RUN \
-  [ $(uname -i) == "x86_64" ] && \
+  if [ $(uname -i) == "x86_64" ]; then
     echo "deb http://security.ubuntu.com/ubuntu focal-security main" | \
-      tee /etc/apt/sources.list.d/focal-security.list || \
+      tee /etc/apt/sources.list.d/focal-security.list
+  else
     echo "deb http://ports.ubuntu.com/ubuntu-ports focal-security main" | \
       tee /etc/apt/sources.list.d/focal-security.list
+  fi
 
 RUN \
   cd /app &&\
