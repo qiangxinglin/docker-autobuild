@@ -42,7 +42,6 @@ RUN \
 RUN \
   cd /app &&\
   for file in *; do ln -s ./$file /usr/bin/$file; done &&\
-  
   apt update && apt install -y \
     libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev libssl1.1 && \
   apt-get clean && \
