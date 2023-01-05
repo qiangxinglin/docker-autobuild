@@ -31,10 +31,18 @@ COPY --from=1 /build/ /app/
 COPY root/ /
 
 RUN \
+  if [ $(uname -i) == "x86_64" ]; then 
+    echo "deb http://security.ubuntu.com/ubuntu focal-security main" | \
+      tee /etc/apt/sources.list.d/focal-security.list
+  elif
+    echo "deb http://ports.ubuntu.com/ubuntu-ports focal-security main" | \
+      tee /etc/apt/sources.list.d/focal-security.list
+  fi
+
+RUN \
   cd /app &&\
   for file in *; do ln -s ./$file /usr/bin/$file; done &&\
-  echo "deb http://security.ubuntu.com/ubuntu focal-security main" | \
-    tee /etc/apt/sources.list.d/focal-security.list && \
+  
   apt update && apt install -y \
     libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev libssl1.1 && \
   apt-get clean && \
