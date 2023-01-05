@@ -31,12 +31,13 @@ COPY --from=1 /build/ /app/
 COPY root/ /
 
 RUN \
-  [ $(uname -i) == "x86_64" ]; && \
+  [ $(uname -i) == "x86_64" ] && \
     echo "deb http://security.ubuntu.com/ubuntu focal-security main" | \
-      tee /etc/apt/sources.list.d/focal-security.list && \
-  [ $(uname -i) == "x86_64" ]; || \
+      tee /etc/apt/sources.list.d/focal-security.list || \
     echo "deb http://ports.ubuntu.com/ubuntu-ports focal-security main" | \
-      tee /etc/apt/sources.list.d/focal-security.list && \
+      tee /etc/apt/sources.list.d/focal-security.list
+
+RUN \
   cd /app &&\
   for file in *; do ln -s ./$file /usr/bin/$file; done &&\
   apt update && apt install -y \
@@ -46,3 +47,5 @@ RUN \
     /tmp/* \
     /var/lib/apt/lists/* \
     /var/tmp/*
+
+      [ $(uname -i) == "x86_64" ] && echo 1 || echo 2
