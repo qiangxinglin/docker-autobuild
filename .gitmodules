@@ -13,3 +13,6 @@
 [submodule "tor-privoxy/tor-privoxy"]
 	path = tor-privoxy/tor-privoxy
 	url = https://github.com/dockage/tor-privoxy
+[submodule "justin-himself/vps-auto-change-ip"]
+	path = vps-auto-change-ip
+	url = https://github.com/justin-himself/vps-auto-change-ip
