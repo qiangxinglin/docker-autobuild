@@ -19,7 +19,7 @@ env:
   #REGISTRY: ghcr.io
   REGISTRY: docker.io
   NAME: vps-auto-change-ip
-  ARCH: linux/386
+  ARCH: linux/amd64
   DESCRIPTION: vps-auto-change-ip multiarch docker image
 
 jobs:
