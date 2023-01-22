@@ -17,5 +17,5 @@
 	path = vps-auto-change-ip
 	url = https://github.com/justin-himself/vps-auto-change-ip
 [submodule "i2pplus"]
-	path = i2pplus
+	path = i2pplus/i2pplus
 	url = https://gitlab.com/i2pplus/I2P.Plus
