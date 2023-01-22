@@ -7,7 +7,7 @@ name: geph4-client
 on:
   workflow_dispatch:
   schedule:
-    - cron: "00 8 * * *"
+    - cron: "00 0 * * *"
   #push:
   #branches: [ master ]
   # Publish semver tags as releases.

@@ -7,7 +7,7 @@ name: i2pplus
 on:
   workflow_dispatch:
   schedule:
-    - cron: "00 8 * * *"
+    - cron: "00 2 * * *"
   #push:
   #branches: [ master ]
   # Publish semver tags as releases.
@@ -19,7 +19,7 @@ env:
   #REGISTRY: ghcr.io
   REGISTRY: docker.io
   NAME: i2pplus
-  ARCH: linux/amd64, linux/arm64, linux/386
+  ARCH: linux/amd64, linux/arm64, linux/arm/v6, linux/arm/v7, linux/386
   DESCRIPTION: Multiarch i2pplus.
 
 jobs:
