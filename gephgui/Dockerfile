@@ -27,6 +27,7 @@ RUN \
 # final image
 FROM ghcr.io/linuxserver/baseimage-rdesktop-web:jammy
 ENV DEBIAN_FRONTEND="noninteractive" CUSTOM_PORT="8080"
+EXPOSE 9909 9910 8080
 COPY --from=1 /build/ /app/
 COPY root/ /
 
