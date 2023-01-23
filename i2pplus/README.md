@@ -4,29 +4,24 @@
 
 ### Very quick start
 
-If you just want to give I2P+ a quick try or are using it on a home network, follow these steps:
+If you just want to give I2P+ a quick try or are using it on a home network, simply execute
 
-1. Create two directories `i2pconfig` and `i2ptorrents`
-2. Copy the following text and save it in a file `docker-compose.yml`
-
-```
-version: "3.5"
-services:
-    i2p:
-        image: geti2p/i2p
-        ports:
-            - 127.0.0.1:4444:4444
-            - 127.0.0.1:6668:6668
-            - 127.0.0.1:7657:7657
-            - 54321:12345
-            - 54321:12345/udp
-        volumes:
-            - ./i2pconfig:/i2p/.i2p
-            - ./i2ptorrents:/i2psnark
+```bash
+docker run \
+  --name i2pplus \
+  --restart unless-stopped \
+  -e JVM_XMX=2048m \
+  -p 127.0.0.1:4444:4444 \
+  -p 127.0.0.1:6668:6668 \
+  -p 127.0.0.1:7657:7657 \
+  -p 54321:12345 \
+  -p 54321:12345/udp \
+  -v i2phome:/i2p/.i2p \
+  -v i2ptorrents:/i2psnark \
+  -d justinhimself/i2pplus
 ```
 
-3. Execute `docker-compose up`
-4. Start a browser and go to `http://127.0.0.1:7657` to complete the setup wizard.
+Start a browser and go to `http://127.0.0.1:7657` to complete the setup wizard.
 
 Note that this quick-start approach is not recommended for production deployments on remote servers. Please read the rest of this document for more information.
 
@@ -75,22 +70,3 @@ You probably want at least the Router Console (7657) and the HTTP Proxy (4444). 
 #### Networking
 
 A best-practices guide for cloud deployments is beyond the scope of this document, but in general you should try to minimize the number of published ports, while exposing only the `I2NP` ports to the internet. That means that the services in the list above which are bound to `127.0.0.1` (which include the router console) will need to be accessed via other methods like ssh tunneling or be manually configured to bind to a different interface.
-
-#### Example
-
-Here is an example container that mounts `i2phome` as home directory, `i2ptorrents` for torrents, and opens HTTP Proxy, IRC, Router Console and I2NP Protocols. It also limits the memory available to the JVM to 256MB.
-
-```
-docker build -t geti2p/i2p .
-# I2NP port needs TCP and UDP.  Change the 54321 to something random, greater than 1024.
-docker run \
-    -e JVM_XMX=256m \
-    -v i2phome:/i2p/.i2p \
-    -v i2ptorrents:/i2psnark \
-    -p 127.0.0.1:4444:4444 \
-    -p 127.0.0.1:6668:6668 \
-    -p 127.0.0.1:7657:7657 \
-    -p 54321:12345 \
-    -p 54321:12345/udp \
-    geti2p/i2p:latest
-```
