@@ -16,7 +16,7 @@ if [ ! -e /config/i2pd ]; then
             exit 
 	fi
 
-    cp -r /config.default/ /config/
+    cp -r /config.default/* /config
 
 fi
 
