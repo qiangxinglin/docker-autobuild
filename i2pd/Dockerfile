@@ -17,7 +17,7 @@ FROM alpine:latest
 ENV DEFAULT_ARGS=" --datadir=/config --reseed.verify=true --upnp.enabled=true --http.enabled=true --http.address=0.0.0.0 --httpproxy.enabled=true --httpproxy.address=0.0.0.0 --socksproxy.enabled=true --socksproxy.address=0.0.0.0 --sam.enabled=true --sam.address=0.0.0.0"
 
 COPY --from=builder  /build/i2pd /usr/local/bin
-COPY ip2d/contrib/certificates /config
+COPY i2pd/contrib/certificates /config
 COPY rootfs/ /
 
 RUN \
