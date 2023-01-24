@@ -23,7 +23,7 @@ RUN \
     boost-program_options boost-date_time boost-thread \
     boost-iostreams openssl miniupnpc musl-utils libstdc++ &&\
   chmod a+x /entrypoint.sh &&\
-  cp /config /config.default
+  cp -r /config /config.default
 
 VOLUME /config
 EXPOSE 7070 4444 4447 4567 7656 4567
