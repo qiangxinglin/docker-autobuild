@@ -1,10 +1,7 @@
 FROM php:8.0.2-apache
 
 COPY SSPanel-Uim/. /usr/src/sspanel/
-COPY 000-default.conf /etc/apache2/sites-enabled
-COPY ./".htaccess" /usr/src/sspanel/
-COPY .config.php /usr/src/sspanel/config
-COPY docker-entrypoint.sh /usr/local/bin/
+COPY rootfs/ /
 ENV DB_DATABASE=sspanel
 ENV DB_USERNAME=root
 ENV DB_PORT=3306
@@ -23,7 +20,7 @@ RUN apt-get update \
 RUN cp config/appprofile.example.php config/appprofile.php && \
     chmod -R 755 storage && \
     chmod -R 777  /usr/src/sspanel/storage/framework/smarty/compile/ && \
-    chmod +x /usr/local/bin/docker-entrypoint.sh && \
+    chmod +x /docker-entrypoint.sh && \
     curl -SL https://getcomposer.org/installer -o composer-setup.php && \
     php composer-setup.php && \
     php composer.phar install && \
@@ -43,4 +40,4 @@ RUN cp config/appprofile.example.php config/appprofile.php && \
 
 WORKDIR /var/www/html
 VOLUME /var/www/html
-ENTRYPOINT "docker-entrypoint.sh"
+ENTRYPOINT ["/docker-entrypoint.sh"]
