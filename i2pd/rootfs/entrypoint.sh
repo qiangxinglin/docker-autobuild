@@ -18,4 +18,6 @@ if [ ! -e /config/i2pd ]; then
 
     cp -r /config.default /config
 
+fi
+
 exec "/usr/local/bin/i2pd --datadir=/config"
