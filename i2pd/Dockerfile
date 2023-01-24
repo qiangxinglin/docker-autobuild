@@ -15,7 +15,7 @@ RUN apk update \
 FROM alpine:latest
 
 COPY --from=builder  /build/i2pd /usr/local/bin
-COPY i2pd/contrib/certificates /config
+COPY i2pd/contrib/certificates /config/certificates
 COPY rootfs/ /
 
 RUN \
