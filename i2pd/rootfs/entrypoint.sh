@@ -1,12 +1,21 @@
-#!/bin/sh
-COMMAND=/usr/local/bin/i2pd
-# To make ports exposeable
-# Note: $DATA_DIR is defined in /etc/profile
+#!/bin/bash
+echo "  _ ____            _ "
+echo " (_)___ \ _ __   __| |"
+echo " | | __) | '_ \ / _\` |"
+echo " | |/ __/| |_) | (_| |"
+echo " |_|_____| .__/ \__,_|"
+echo "         |_|          "
 
-if [ "$1" = "--help" ]; then
-    set -- $COMMAND --help
-else
-    set -- $COMMAND $DEFAULT_ARGS $@
-fi
+# copy config for first time installtion
+if [ ! -e /config/i2pd ]; then
 
-exec "$@"
+    echo -n "\nCopying new files to directory."
+
+    if [ -n "$(find /config -mindepth 1 -maxdepth 1)" ]; then
+			echo >&2 "Directory not empty!"
+            exit 
+	fi
+
+    cp -r /config.default /config
+
+exec "/usr/local/bin/i2pd --datadir=/config"
