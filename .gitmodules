@@ -22,3 +22,5 @@
 [submodule "i2pd/i2pd"]
 	path = i2pd/i2pd
 	url = https://github.com/PurpleI2P/i2pd
+[submodule "i2pd"]
+	branch = openssl
