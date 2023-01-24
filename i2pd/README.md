@@ -16,11 +16,11 @@ For i2pd to really work, host network mode is strongly adviced.
 
 ```bash
 docker run \
-  --name ip2d \
+  --name i2pd \
   --restart unless-stopped \
   --net host \
   -v i2pd_data:/config \
-  justinhimself/i2pd
+  -d justinhimself/i2pd
 ```
 
 Simple as that.
