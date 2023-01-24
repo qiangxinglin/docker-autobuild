@@ -7,7 +7,7 @@ echo " |_|_____| .__/ \__,_|"
 echo "         |_|          "
 
 # copy config for first time installtion
-if [ ! -e /config/i2pd ]; then
+if [ ! -e /config/i2pd.conf ]; then
 
     echo "Copying new files to directory."
 
