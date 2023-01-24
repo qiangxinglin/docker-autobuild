@@ -22,10 +22,9 @@ RUN \
   apk --no-cache add boost-filesystem boost-system \
     boost-program_options boost-date_time boost-thread \
     boost-iostreams openssl miniupnpc musl-utils libstdc++ &&\
-  chmod a+x /entrypoint.sh &&\
   cp -r /config /config.default
 
 VOLUME /config
 EXPOSE 7070 4444 4447 4567 7656 4567
 
-CMD [ "/entrypoint.sh" ]
+CMD [ "sh", "/entrypoint.sh" ]
