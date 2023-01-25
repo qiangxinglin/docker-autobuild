@@ -30,14 +30,7 @@ docker build -t justinhimself/tor-privoxy https://github.com/justinhimself/docke
 
 # Quick Start
 
-The quickest way to get started is using [docker-compose](https://docs.docker.com/compose/).
-
-```bash
-wget https://raw.githubusercontent.com/justin-himself/docker-autobuild/master/tor-privoxy/docker-compose.yml
-docker-compose up
-```
-
-Alternately, you can manually launch the `tor-privoxy` container.
+> Keep everything default
 
 ```bash
 docker run --name='tor-privoxy' -d \
@@ -52,6 +45,22 @@ The exposed ports are:
 - <code>9050</code>: Tor proxy (SOCKS5)
 - <code>9051</code>: Tor control port
 - <code>8118</code>: Privoxy (HTTP Proxy)
+
+> Use custom configuration
+
+You can make tor config and data dir persistent and add you own config.
+
+```bash
+docker run --name='tor-privoxy' -d \
+  -p 9050:9050 \
+  -p 9051:9051 \
+  -p 8118:8118 \
+  -v tor_config:/etc/tor \
+  -v tor_data:/var/lib/tor \
+justinhimself/tor-privoxy:latest
+```
+
+If container finds your tor_config dir is empty, it will automatically create default torrc.
 
 # Maintenance
 
