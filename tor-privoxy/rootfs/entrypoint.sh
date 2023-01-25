@@ -28,9 +28,5 @@ echo ""
 # start socat, privoxy, tor in background 
 socat -d tcp-listen:9051,reuseaddr,fork tcp:127.0.0.1:9052 &> /dev/null &
 privoxy /etc/privoxy/config &> /dev/null &
-tor -f /etc/tor/torrc &> /dev/null &
+tor -f /etc/tor/torrc
 
-# print tor logs on screen
-rm -rf /var/log/tor/notices.log
-touch /var/log/tor/notices.log
-tail -f /var/log/tor/notices.log

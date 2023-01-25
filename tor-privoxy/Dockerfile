@@ -12,9 +12,13 @@ RUN \
     && sed -i \
         -e 's/#SOCKSPort 192.168.0.1:9100/SOCKSPort 0.0.0.0:9050/g' \
         -e 's/#ControlPort 9051/ControlPort 9052/g' \
+        -e 's/Log notice file \/var\/log\/tor\/notices.log/Log notice stdout/g' \
         /etc/tor/torrc \
     && cp -r /etc/tor /etc/tor.default \
     && chown root /var/lib/tor
+
+
+
 
 COPY rootfs/ /
 CMD ["sh", "/entrypoint.sh"]
