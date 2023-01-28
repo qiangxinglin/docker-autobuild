@@ -2,8 +2,7 @@
     <img src="https://github.com/aler9/rtsp-simple-server/raw/main/logo.png" alt="rtsp-simple-server">
 </p>
 
-
-![](https://img.shields.io/badge/ARCH-x86-9cf) ![](https://img.shields.io/badge/ARCH-x86_64-red) ![](https://img.shields.io/badge/ARCH-ARM_64-ff69b4) ![](https://img.shields.io/badge/ARCH-ARM_v7-yellow) ![](https://img.shields.io/badge/ARCH-ARM_v6-green)
+![](https://img.shields.io/badge/x86-9cf) ![](https://img.shields.io/badge/x86_64-red) ![](https://img.shields.io/badge/ARM_64-ff69b4) ![](https://img.shields.io/badge/ARM_v7-yellow) ![](https://img.shields.io/badge/ARM_v6-green)
 
 [![Test](https://github.com/aler9/rtsp-simple-server/workflows/test/badge.svg)](https://github.com/aler9/rtsp-simple-server/actions?query=workflow:test)
 [![Lint](https://github.com/aler9/rtsp-simple-server/workflows/lint/badge.svg)](https://github.com/aler9/rtsp-simple-server/actions?query=workflow:lint)
@@ -12,32 +11,32 @@
 [![Docker Hub](https://img.shields.io/badge/docker-aler9/rtsp--simple--server-blue)](https://hub.docker.com/r/aler9/rtsp-simple-server)
 [![API Documentation](https://img.shields.io/badge/api-documentation-blue)](https://aler9.github.io/rtsp-simple-server)
 
-
 > This image is buildt based on offical rtsp-simple-server image, with ffmpeg support.
 
 _rtsp-simple-server_ is a ready-to-use and zero-dependency server and proxy that allows users to publish, read and proxy live video and audio streams through various protocols:
 
-|protocol|description|publish|read|proxy|
-|--------|-----------|-------|----|-----|
-|RTSP|fastest way to publish and read streams|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
-|RTMP|allows to interact with legacy software|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
-|Low-Latency HLS|allows to embed streams into a web page|:x:|:heavy_check_mark:|:heavy_check_mark:|
+| protocol        | description                             | publish            | read               | proxy              |
+| --------------- | --------------------------------------- | ------------------ | ------------------ | ------------------ |
+| RTSP            | fastest way to publish and read streams | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| RTMP            | allows to interact with legacy software | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| Low-Latency HLS | allows to embed streams into a web page | :x:                | :heavy_check_mark: | :heavy_check_mark: |
 
 Features:
 
-* Publish live streams to the server
-* Read live streams from the server
-* Act as a proxy and serve streams from other servers or cameras, always or on-demand
-* Each stream can have multiple video and audio tracks, encoded with any codec, including H264, H265, VP8, VP9, MPEG2, MP3, AAC, Opus, PCM, JPEG
-* Streams are automatically converted from a protocol to another. For instance, it's possible to publish a stream with RTSP and read it with HLS
-* Serve multiple streams at once in separate paths
-* Authenticate users; use internal or external authentication
-* Query and control the server through an HTTP API
-* Read Prometheus-compatible metrics
-* Redirect readers to other RTSP servers (load balancing)
-* Run external commands when clients connect, disconnect, read or publish streams
-* Reload the configuration without disconnecting existing clients (hot reloading)
-* Compatible with Linux, Windows and macOS, does not require any dependency or interpreter, it's a single executable
+- Publish live streams to the server
+- Read live streams from the server
+- Act as a proxy and serve streams from other servers or cameras, always or on-demand
+- Each stream can have multiple video and audio tracks, encoded with any codec, including H264, H265, VP8, VP9, MPEG2, MP3, AAC, Opus, PCM, JPEG
+- Streams are automatically converted from a protocol to another. For instance, it's possible to publish a stream with RTSP and read it with HLS
+- Serve multiple streams at once in separate paths
+- Authenticate users; use internal or external authentication
+- Query and control the server through an HTTP API
+- Read Prometheus-compatible metrics
+- Redirect readers to other RTSP servers (load balancing)
+- Run external commands when clients connect, disconnect, read or publish streams
+- Reload the configuration without disconnecting existing clients (hot reloading)
+- Compatible with Linux, Windows and macOS, does not require any dependency or interpreter, it's a single executable
+
 ## Docker
 
 Download and launch the image:
@@ -84,7 +83,8 @@ docker run --rm -it -e RTSP_PROTOCOLS=tcp -p 8554:8554 -p 1935:1935 -p 8888:8888
 
    ```
    ffmpeg -i rtsp://localhost:8554/mystream -c copy output.mp4
-  
+   ```
+
 ## Document
 
 https://github.com/aler9/rtsp-simple-server#table-of-contents
