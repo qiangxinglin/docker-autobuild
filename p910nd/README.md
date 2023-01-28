@@ -5,7 +5,7 @@
 ![](https://img.shields.io/badge/ARCH-ARM_64-ff69b4)
 ![](https://img.shields.io/badge/ARCH-ARM_v7-yellow)
 ![](https://img.shields.io/badge/ARCH-ARM_v6-green)
-![](https://img.shields.io/badge/ARCH-ARM_v5-yellowgreen) 
+![](https://img.shields.io/badge/ARCH-ARM_v5-yellowgreen)
 ![](https://img.shields.io/badge/ARCH-PowerPC_64_le-blueviolet)
 ![](https://img.shields.io/badge/ARCH-IBM_Z-blue)
 ![](https://img.shields.io/badge/ARCH-mips64le-lightgrey)
@@ -16,14 +16,14 @@ p910nd is a small printer daemon intended for diskless platforms that does not s
 
 ### Usage
 
-- The -f option can be used to specify a different printer  device,  e.g.
-/dev/usblp0.
-- The  -i option can be used to specify binding to one address instead of
-all interfaces which is the default.
+- The -f option can be used to specify a different printer device, e.g.
+  /dev/usblp0.
+- The -i option can be used to specify binding to one address instead of
+  all interfaces which is the default.
 - The -b option turns on bidirectional copying.
 - The -v option shows the version number.
-- The -d option causes the daemon to run in the foreground in  standalone
-mode and prints log messages to stdout for debugging.
+- The -d option causes the daemon to run in the foreground in standalone
+  mode and prints log messages to stdout for debugging.
 
 find more from `man 8 p910nd`
 
@@ -47,5 +47,3 @@ docker run -d \
 ## License
 
 See the [LICENSE](LICENSE.md) file for license rights and limitations (GPL2).
-
-
