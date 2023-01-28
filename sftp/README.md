@@ -1,11 +1,11 @@
 ## SFTP
 
-![](https://img.shields.io/badge/ARCH-x86-9cf)
-![](https://img.shields.io/badge/ARCH-x86_64-red)
-![](https://img.shields.io/badge/ARCH-ARM_64-ff69b4)
-![](https://img.shields.io/badge/ARCH-ARM_v7-yellow)
-![](https://img.shields.io/badge/ARCH-PowerPC_64_le-blueviolet)
-![](https://img.shields.io/badge/ARCH-IBM_Z-blue)
+![](https://img.shields.io/badge/x86-9cf)
+![](https://img.shields.io/badge/x86_64-red)
+![](https://img.shields.io/badge/ARM_64-ff69b4)
+![](https://img.shields.io/badge/ARM_v7-yellow)
+![](https://img.shields.io/badge/PowerPC_64_le-blueviolet)
+![](https://img.shields.io/badge/IBM_Z-blue)
 
 ### Description
 
@@ -15,8 +15,8 @@ Cloned from [atmoz/sftp](https://github.com/atmoz/sftp), added multiarch support
 
 ### Usage
 
-- ![Docker Image Size (debian)](https://img.shields.io/docker/image-size/atmoz/sftp/debian?label=debian&logo=debian&style=plastic) [`debian`, `latest` (*Dockerfile*)](https://github.com/atmoz/sftp/blob/master/Dockerfile)
-- ![Docker Image Size (alpine)](https://img.shields.io/docker/image-size/atmoz/sftp/alpine?label=alpine&logo=Alpine%20Linux&style=plastic) [`alpine` (*Dockerfile*)](https://github.com/atmoz/sftp/blob/master/Dockerfile-alpine)
+- ![Docker Image Size (debian)](https://img.shields.io/docker/image-size/atmoz/sftp/debian?label=debian&logo=debian&style=plastic) [`debian`, `latest` (_Dockerfile_)](https://github.com/atmoz/sftp/blob/master/Dockerfile)
+- ![Docker Image Size (alpine)](https://img.shields.io/docker/image-size/atmoz/sftp/alpine?label=alpine&logo=Alpine%20Linux&style=plastic) [`alpine` (_Dockerfile_)](https://github.com/atmoz/sftp/blob/master/Dockerfile-alpine)
 
 - Define users in (1) command arguments, (2) `SFTP_USERS` environment variable
   or (3) in file mounted as `/etc/sftp/users.conf` (syntax:
@@ -171,7 +171,6 @@ bindmount /data/docs /home/peter/docs --read-only
 
 > What's the difference between Debian and Alpine?
 
-
 The biggest differences are in size and OpenSSH version. [Alpine](https://hub.docker.com/_/alpine/) is 10 times smaller than [Debian](https://hub.docker.com/_/debian/). OpenSSH version can also differ, as it's two different teams maintaining the packages. Debian is generally considered more stable and only bugfixes and security fixes are added after each Debian release (about 2 years). Alpine has a faster release cycle (about 6 months) and therefore newer versions of OpenSSH. As I'm writing this, Debian has version 7.4 while Alpine has version 7.5. Recommended reading: [Comparing Debian vs Alpine for container & Docker apps](https://www.turnkeylinux.org/blog/alpine-vs-debian)
 
 > What version of OpenSSH do I get?
@@ -181,4 +180,4 @@ It depends on which linux distro and version you choose (see available images at
 - [List of `openssh` packages on Alpine releases](https://pkgs.alpinelinux.org/packages?name=openssh&branch=&repo=main&arch=x86_64)
 - [List of `openssh-server` packages on Debian releases](https://packages.debian.org/search?keywords=openssh-server&searchon=names&exact=1&suite=all&section=main)
 
-**Note:** The time when this image was last built can delay the availability of an OpenSSH release. Since this is an automated build linked with [debian](https://hub.docker.com/_/debian/) and [alpine](https://hub.docker.com/_/alpine/) repos, the build will depend on how often they push changes (out of my control).  Typically this can take 1-5 days, but it can also take longer. You can of course make this more predictable by cloning this repo and run your own build manually.
+**Note:** The time when this image was last built can delay the availability of an OpenSSH release. Since this is an automated build linked with [debian](https://hub.docker.com/_/debian/) and [alpine](https://hub.docker.com/_/alpine/) repos, the build will depend on how often they push changes (out of my control). Typically this can take 1-5 days, but it can also take longer. You can of course make this more predictable by cloning this repo and run your own build manually.
