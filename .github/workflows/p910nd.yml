@@ -65,41 +65,30 @@ jobs:
           tags: |
             type=raw, value=latest
 
-      # # build for i386
-      # - name: Build for i386
-      #   with:
-      #     context: ${{ env.NAME }}
-      #     name: ${{ env.NAME }}
-      #   run: |
-      #     docker buildx build \
-      #       --platform linux/i386 \
-      #       --build-context $context \
-      #       --build-arg TARGETARCH=i386 \
-      #       -t $name
-
       # build for the rest
       - name: Build and push Docker image
         id: build-and-push
-        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        # uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: ${{ env.NAME }}
           # push: ${{ github.event_name != 'pull_request' }}
           push: false
-          load:
           platforms: ${{ env.ARCH }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+        run: |
+          echo $platforms $tags $labels
 
-      - name: Available platforms
-        run: echo ${{ steps.build-and-push.outputs.platforms }}
+      # - name: Available platforms
+      #   run: echo ${{ steps.build-and-push.outputs.platforms }}
 
-      - name: push README to Dockerhub
-        uses: christian-korneck/update-container-description-action@v1
-        env:
-          DOCKER_USER: ${{ secrets.DH_USERNAME }}
-          DOCKER_PASS: ${{ secrets.DH_PASSWORD }}
-        with:
-          destination_container_repo: ${{ secrets.DH_USERNAME }}/${{ env.NAME }}
-          provider: dockerhub
-          short_description: ${{ env.DESCRIPTION }}
-          readme_file: "${{ env.NAME }}/README.md"
+      # - name: push README to Dockerhub
+      #   uses: christian-korneck/update-container-description-action@v1
+      #   env:
+      #     DOCKER_USER: ${{ secrets.DH_USERNAME }}
+      #     DOCKER_PASS: ${{ secrets.DH_PASSWORD }}
+      #   with:
+      #     destination_container_repo: ${{ secrets.DH_USERNAME }}/${{ env.NAME }}
+      #     provider: dockerhub
+      #     short_description: ${{ env.DESCRIPTION }}
+      #     readme_file: "${{ env.NAME }}/README.md"
