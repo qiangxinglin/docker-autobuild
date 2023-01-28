@@ -21,3 +21,6 @@
 	url = https://github.com/PurpleI2P/i2pd
 [submodule "i2pd"]
 	branch = openssl
+[submodule "p910nd/p910nd"]
+	path = p910nd/p910nd
+	url = https://github.com/kenyapcomau/p910nd
