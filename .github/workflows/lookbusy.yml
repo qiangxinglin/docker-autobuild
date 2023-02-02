@@ -21,7 +21,7 @@ env:
   REGISTRY: docker.io
   NAME: lookbusy
   ARCH: linux/386,  linux/amd64,  linux/arm64/v8, linux/arm/v7, linux/arm/v6, linux/ppc64le, linux/s390x
-  DESCRIPTION: lookbusy one-key deploy image (fool-proof config for Oracle)
+  DESCRIPTION: lookbusy alpine image (以及 Oracle 一键命令, 包含网络占用)
 
 jobs:
   build:
