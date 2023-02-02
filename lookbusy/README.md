@@ -1,5 +1,13 @@
 ## LookBusy
 
+![](https://img.shields.io/badge/x86-9cf)
+![](https://img.shields.io/badge/x86_64-red)
+![](https://img.shields.io/badge/ARM_64-ff69b4)
+![](https://img.shields.io/badge/ARM_v7-yellow)
+![](https://img.shields.io/badge/ARM_v6-green)
+![](https://img.shields.io/badge/PowerPC_64_le-blueviolet)
+![](https://img.shields.io/badge/IBM_Z-blue)
+
 This the docker image for lookbusy.
 
 Lookbusy is a tool for making systems busy. It uses relatively simple techniques to generate CPU activity, memory and disk utilization and traffic.
@@ -8,7 +16,7 @@ Lookbusy is a tool for making systems busy. It uses relatively simple techniques
 
 https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm
 
-![]()
+![Oralce Nonsense](https://raw.githubusercontent.com/justin-himself/docker-autobuild/master/lookbusy/oracle_nonsense.png)
 
 ## Quick Start
 
