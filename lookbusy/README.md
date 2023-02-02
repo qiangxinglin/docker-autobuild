@@ -29,7 +29,10 @@ If you are bypassing Oracle policy stated above, simply execute:
 ```bash
 docker run  \
   --name lookbusy \
-  -e IS_ORACLE=true \
+  -e IS_ORACLE=1 \
+  -e CPU_UTIL=10 \
+  -e MEM_UTIL=10 \
+  -e SPEEDTEST_INTERVAL=7200 \
   --restart always \
   -d justinhimself/lookbusy
 ```
@@ -42,7 +45,7 @@ The script will automate everything for you, including:
 
 **Normal use**
 
-IF you just want to use the program, just use it like normal.
+IF you just want to use lookbusy, just use it like you normal would.
 
 ```bash
 docker run  \

@@ -16,4 +16,5 @@ FROM alpine:latest
 COPY rootfs/ /
 COPY --from=builder1 /lookbusy-1.4/lookbusy /usr/bin/
 COPY --from=builder2 /speedtest-go/speedtest-go /usr/bin/
+ENV CPU_UTIL=10 MEM_UTIL=10 SPEEDTEST_INTERVAL=7200
 ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
