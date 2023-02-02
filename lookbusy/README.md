@@ -71,6 +71,8 @@ positions.
 
 The script will ping 1.1.1.1 every 500ms to ensure 10% network load.
 
-**If CPU util is already 10%, will running is program cost extra?**
+**If CPU util is already 10%, will running this program cost extra?**
 
 No.
+
+But note that this program would constanly consume 10% of your memory on ARM instance no matter what your current memory load is.
