@@ -9,7 +9,7 @@
 ![](https://img.shields.io/badge/IBM_Z-blue)
 
 This the docker image for lookbusy.  
-这个是 Lookbusy Docker Image, 这个 Image 包含专门针对 Oralce 的一键部署脚本, 并可以自动达成 10% 的网络占用 (通过每秒 ping 两次 1.1.1.1)
+这个是 Lookbusy Docker Image, 这个 Image 包含专门针对 Oralce 的一键部署脚本, 并可以自动达成 10% 的网络占用 (通过每秒 ping 100 次 1.1.1.1)
 
 Lookbusy is a tool for making systems busy. It uses relatively simple techniques to generate CPU activity, memory and disk utilization and traffic.
 
@@ -69,7 +69,7 @@ positions.
 
 **How network load works?**
 
-The script will ping 1.1.1.1 every 500ms to ensure 10% network load.
+The script will ping 1.1.1.1 every 10ms to ensure 10% network load. This would cost 15.5GB of data per month.
 
 **If CPU util is already 10%, will running this program cost extra?**
 

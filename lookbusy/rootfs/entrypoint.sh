@@ -17,10 +17,10 @@ HOST_MEM_UTIL=$(expr $HOST_MEM / 100 \* $ORACLE_MEM_UTIL)
 if [ -n "${IS_ORACLE+set}" ]; then
     echo "Oracle settings will be applied."
     echo "Host memory is $HOST_MEM MB total."
-    echo "ping -i 0.5 1.1.1.1"
+    echo "fastping -i 0.01 1.1.1.1"
     cmd="$cmd -c $ORACLE_CPU_UTIL "
     $IS_ARM && cmd="$cmd -m "$HOST_MEM_UTIL"MB -M 100" 
-    ping -i 0.5 1.1.1.1 &> /dev/null &
+    /usr/bin/fastping 1.1.1.1 &> /dev/null &
 else
     cmd="$cmd $1" 
 fi 
