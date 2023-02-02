@@ -27,9 +27,9 @@ If you are bypassing Oracle policy stated above, simply execute:
 
 ```bash
 docker run  \
-  --name keepbusy \
+  --name lookbusy \
   -e IS_ORACLE=true \
-  -d justinhimself/keepbusy
+  -d justinhimself/lookbusy
 ```
 
 The script will automate everything for you, including:
@@ -43,8 +43,8 @@ IF you just want to use the program, just use it like normal.
 
 ```bash
 docker run  \
-  --name keepbusy \
-  -d justinhimself/keepbusy -h
+  --name lookbusy \
+  -d justinhimself/lookbusy -h
 ```
 
 ## Details
