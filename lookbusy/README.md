@@ -18,7 +18,7 @@ Memory utilization is less than 10% (applies to A1 shapes only)
 
 ## Quick Start
 
-> For Oracle
+**For Oracle**
 
 If you are bypassing Oracle policy stated above, simply execute:
 
@@ -29,9 +29,12 @@ docker run  \
   -d justinhimself/keepbusy
 ```
 
-The container will take care _ALL_ of it for you, including network.
+The script will automate everything for you, including:
 
-> For not oracle
+- Keep CPU and Network busy
+- Keep Memory busy for ARM Instance
+
+**Normal use**
 
 IF you just want to use the program, just use it like normal.
 
