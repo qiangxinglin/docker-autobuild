@@ -6,15 +6,9 @@ Lookbusy is a tool for making systems busy. It uses relatively simple techniques
 
 ### Why look busy
 
-> https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm
+https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm
 
-Reclamation of Idle Compute Instances
-
-Idle Always Free compute instances may be reclaimed by Oracle. Oracle will deem virtual machine and bare metal compute instances as idle if, during a 7-day period, the following are true:
-
-CPU utilization for the 95th percentile is less than 10%
-Network utilization is less than 10%
-Memory utilization is less than 10% (applies to A1 shapes only)
+![]()
 
 ## Quick Start
 
