@@ -8,8 +8,7 @@
 ![](https://img.shields.io/badge/PowerPC_64_le-blueviolet)
 ![](https://img.shields.io/badge/IBM_Z-blue)
 
-This the docker image for lookbusy.  
-这个是 Lookbusy Docker Image, 这个 Image 包含专门针对 Oralce 的一键部署脚本, 并可以自动达成 10% 的网络占用 (通过每秒 ping 100 次 1.1.1.1)
+This the docker image for lookbusy.
 
 Lookbusy is a tool for making systems busy. It uses relatively simple techniques to generate CPU activity, memory and disk utilization and traffic.
 
@@ -35,8 +34,9 @@ docker run  \
 
 The script will automate everything for you, including:
 
-- Keep CPU and Network busy
-- Keep Memory busy for ARM Instance
+- Keep 10% CPU busy (dynammically)
+- Keep 10% Memory occupied for ARM Instance
+- Run a speedtest every 2hrs
 
 **Normal use**
 
@@ -66,10 +66,6 @@ allocating a buffer of a controllable size, then steadily stirring it to keep
 the pages active from the VM standpoint. Disk load is induced through
 creation of one or more files, and copying blocks of it between two moving
 positions.
-
-**How network load works?**
-
-The script will ping 1.1.1.1 every 10ms to ensure 10% network load. This would cost 15.5GB of data per month.
 
 **If CPU util is already 10%, will running this program cost extra?**
 
