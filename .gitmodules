@@ -24,3 +24,6 @@
 [submodule "p910nd/p910nd"]
 	path = p910nd/p910nd
 	url = https://github.com/kenyapcomau/p910nd
+[submodule "lookbusy/ping"]
+	path = lookbusy/ping
+	url = https://github.com/sryze/ping
