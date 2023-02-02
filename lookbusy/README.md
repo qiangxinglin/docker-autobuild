@@ -12,6 +12,8 @@ This the docker image for lookbusy.
 
 Lookbusy is a tool for making systems busy. It uses relatively simple techniques to generate CPU activity, memory and disk utilization and traffic.
 
+Oracle 一键保活, CPU 内存占用 10% + 每两个小时一次 Speedtest.
+
 ### Why look busy
 
 https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm
