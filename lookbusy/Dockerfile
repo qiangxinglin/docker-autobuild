@@ -1,4 +1,4 @@
-FROM alpine:latest as builder
+FROM alpine:latest as builder1
 
 # build lookbusy
 COPY ./lookbusy-1.4.tar.gz /
@@ -6,19 +6,14 @@ RUN tar -zxvf /lookbusy-1.4.tar.gz
 RUN  apk add --update cmake gcc build-base openssl-dev curl-dev libxml2-dev
 RUN cd lookbusy-1.4 && chmod +x ./configure &&\
     ./configure && make && chmod +x lookbusy
-# build speedtest
-COPY ./speedtest /speedtest
-RUN cd speedtest &&\
-    cmake -DCMAKE_BUILD_TYPE=Release &&\
-    make && chmod +x SpeedTest
 
-# move into /app for copy
-RUN mkdir -p /app &&\
-    mv /speedtest/SpeedTest /app/speedtest &&\
-    mv /lookbusy-1.4/lookbusy /app
+FROM golang:alpine as builder2
+COPY ./speedtest-go /speedtest-go
+RUN cd /speedtest-go &&\
+    go build && chmod +x speedtest-go
 
 FROM alpine:latest
-RUN apk add --update --no-cache gcc openssl libcurl libxml2
 COPY rootfs/ /
-COPY --from=builder /app /usr/bin/
+COPY --from=builder1 /lookbusy-1.4/lookbusy /usr/bin/
+COPY --from=builder2 /speedtest-go/speedtest-go /usr/bin/
 ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]

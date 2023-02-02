@@ -31,7 +31,7 @@ echo -e "\n---------------------\n"
 if [ -n "${IS_ORACLE+set}" ]; then
     eval "$cmd" &
     while true; do
-        /usr/bin/speedtest
+        /usr/bin/speedtest-go
         sleep $SPEEDTEST_SLEEP
         echo 
     done
