@@ -29,6 +29,7 @@ If you are bypassing Oracle policy stated above, simply execute:
 docker run  \
   --name lookbusy \
   -e IS_ORACLE=true \
+  --restart always \
   -d justinhimself/lookbusy
 ```
 
@@ -46,6 +47,12 @@ docker run  \
   --name lookbusy \
   -d justinhimself/lookbusy -h
 ```
+
+## Demo
+
+**Before Lookbusy**
+
+**After Lookbusy**
 
 ## Details
 
@@ -66,4 +73,4 @@ The script will ping 1.1.1.1 every 500ms to ensure 10% network load.
 
 **If CPU util is already 10%, will running is program cost extra?**
 
-No. Same goes for memory.
+No.
