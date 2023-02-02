@@ -53,12 +53,6 @@ docker run  \
   -d justinhimself/lookbusy -h
 ```
 
-## Demo
-
-**Before Lookbusy**
-
-**After Lookbusy**
-
 ## Details
 
 **How lookbusy works?**
