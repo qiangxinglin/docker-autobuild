@@ -43,6 +43,9 @@ The script will automate everything for you, including:
 - Keep 10% Memory occupied for ARM Instance
 - Run a speedtest every 2hrs
 
+Set `-e SPEEDTEST_INTERVAL=0` to disable speedtest. 
+
+
 **Normal use**
 
 IF you just want to use lookbusy, just use it like you normal would.
