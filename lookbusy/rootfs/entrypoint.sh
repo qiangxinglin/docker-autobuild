@@ -15,7 +15,6 @@ HOST_MEM_UTIL=$(expr $HOST_MEM / 100 \* $MEM_UTIL)
 if [ -n "${IS_ORACLE+set}" ]; then
     echo "Oracle settings will be applied."
     echo "Host memory is $HOST_MEM MB total."
-    echo "Every 2hrs execute speedtest."
     cmd="$cmd -c $CPU_UTIL "
     $IS_ARM && cmd="$cmd -m "$HOST_MEM_UTIL"MB -M 100" 
 else
@@ -25,7 +24,7 @@ fi
 echo $cmd
 echo -e "\n---------------------\n"
 
-if [ -n "${IS_ORACLE+set}" ]; then
+if [ -n "${IS_ORACLE+set}" ] && [ "$SPEEDTEST_INTERVAL" != "0" ]; then
     eval "$cmd" &
     while true; do
         /usr/bin/speedtest-go
