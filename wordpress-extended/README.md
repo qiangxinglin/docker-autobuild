@@ -34,7 +34,7 @@ docker run \
 -e PHP_MAX_EXECUTION_TIME=300 `#optional`\
 -e PHP_MEMORY_LIMIT=4096M `#optional`\
 -v EXAMPLE_PATH/wordpress:/var/www/html \
--d justinhimself/wordpress_extended:latest
+-d justinhimself/wordpress-extended:latest
 ```
 
 ### Parameters
