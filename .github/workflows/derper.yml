@@ -59,6 +59,8 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           platforms: ${{ env.ARCH }}
           tags: ${{ secrets.DH_USERNAME }}/${{ env.NAME }}:latest
+          cache-from: type=gha
+          cache-to: type=gha
 
       - name: Available platforms
         run: echo ${{ steps.build-and-push.outputs.platforms }}
