@@ -6,8 +6,8 @@ name: gephgui
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "00 1 * * *"
+  # schedule:
+  #   - cron: "00 1 * * *"
   #push:
   #branches: [ master ]
   # Publish semver tags as releases.
@@ -86,7 +86,7 @@ jobs:
         uses: christian-korneck/update-container-description-action@v1
         env:
           DOCKER_USER: ${{ secrets.DH_USERNAME }}
-          DOCKER_PASS: ${{ secrets.DH_PASSWORD }}
+          DOCKER_PASS: ${{ secrets.DH_TOKEN }}
         with:
           destination_container_repo: ${{ secrets.DH_USERNAME }}/${{ env.NAME }}
           provider: dockerhub

@@ -7,8 +7,8 @@ name: derper
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "00 9 1 * *"
+  # schedule:
+  #   - cron: "00 9 1 * *"
 
 env:
   REGISTRY: docker.io
